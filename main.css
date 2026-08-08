@@ -1,5 +1,5 @@
-/* ===== USC 2222 · main.css (v2) ===== */
-/* Две темы, марсианский фон. Оформление здесь, логика в main.js. */
+/* ===== USC 2222 · main.css (v3) ===== */
+/* Две темы, марсианский фон, сквозное меню. Логика в main.js. */
 
 :root{
   --mono:'Courier New',monospace;
@@ -55,14 +55,17 @@ a{color:var(--link);text-decoration:none}
 }
 .gw-quote:hover{border-color:var(--accent);background:rgba(193,68,14,.08)}
 .gw-arrow{color:var(--accent)}
-.gw-hint{margin-top:2rem;font-size:.75rem;color:var(--muted)}
 
 /* ---------- ОБЩИЙ КАРКАС ---------- */
-.site-header,.site-footer{
-  display:flex;justify-content:space-between;align-items:center;
+.site-header{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;
   padding:.8rem 1.5rem;border-bottom:1px solid var(--border);
 }
-.site-footer{border-bottom:none;border-top:1px solid var(--border);margin-top:4rem}
+.site-footer{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:.5rem 1rem;padding:.8rem 1.5rem;
+  border-top:1px solid var(--border);margin-top:4rem;
+}
 .brand{
   font-family:var(--mono);font-size:1rem;font-weight:600;
   letter-spacing:normal;text-transform:none;
@@ -70,13 +73,16 @@ a{color:var(--link);text-decoration:none}
   padding:.2em .7em;
 }
 .brand:hover{border-color:var(--accent);color:var(--link)}
-.lang-switch{margin-left:auto}
+.site-menu{display:flex;flex-wrap:wrap;gap:.25rem 1rem;margin-left:auto}
+.site-menu a{color:var(--muted);font-size:.8rem;text-transform:uppercase}
+.site-menu a:hover{color:var(--link)}
+.site-menu a.active{color:var(--accent)}
 .lang-switch a{margin-left:1rem;color:var(--muted);text-transform:uppercase;font-size:.8rem}
 .lang-switch a.active{color:var(--accent)}
 #usc-theme-toggle{
   background:none;border:1px solid var(--border);border-radius:4px;
   color:var(--text);cursor:pointer;padding:.15em .5em;
-  font-size:1rem;line-height:1.2;margin-left:1rem;
+  font-size:1rem;line-height:1.2;margin-left:.5rem;
 }
 #usc-theme-toggle:hover{border-color:var(--accent)}
 

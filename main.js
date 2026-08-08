@@ -1,7 +1,7 @@
 // USC 2222 — общий каркас
 const SITE = {
   year: 2222,
-  brand: 'Марс',
+  brand: { ru: 'Марс', en: 'Mars', fr: 'Mars', es: 'Marte' },
   telegram: 'https://t.me/s_mars_r',
   langs: [ // по алфавиту кодов
     { code: 'en', name: 'English' },
@@ -10,6 +10,26 @@ const SITE = {
     { code: 'ru', name: 'Русский' },
   ],
 };
+
+// сквозное меню: коды разделов + названия на 4 языках
+const MENU = [
+  { code: 'svts', ru: 'Советы',      en: 'Soviets',      fr: 'Soviets',      es: 'Soviets' },
+  { code: 'cnst', ru: 'Конституция', en: 'Constitution', fr: 'Constitution', es: 'Constitución' },
+  { code: 'thry', ru: 'Диамат',      en: 'Diamat',       fr: 'Diamat',       es: 'Diamat' },
+  { code: 'clnd', ru: 'Календарь',   en: 'Calendar',     fr: 'Calendrier',   es: 'Calendario' },
+  { code: 'dscn', ru: 'Обсуждения',  en: 'Discussions',  fr: 'Discussions',  es: 'Discusiones' },
+  { code: 'hist', ru: 'Истории',     en: 'Stories',      fr: 'Histoires',    es: 'Historias' },
+  { code: 'glsr', ru: 'Глоссарий',   en: 'Glossary',     fr: 'Glossaire',    es: 'Glosario' },
+  { code: 'bout', ru: 'О сайте',     en: 'About',        fr: 'À propos',     es: 'Acerca de' },
+];
+
+const FOOTER = {
+  ru: '© Второй марсианский Союз Советов Граждан 2226. Все права принадлежат гражданам.',
+  en: '© Second Martian Union of Soviets of Citizens 2226. All rights belong to the citizens.',
+  fr: '© Seconde Union Martienne des Soviets de Citoyens 2226. Tous les droits appartiennent aux citoyens.',
+  es: '© Segunda Unión Marciana de Soviets de Ciudadanos 2226. Todos los derechos pertenecen a los ciudadanos.',
+};
+
 const LANG_KEY = 'usc-lang';
 const THEME_KEY = 'usc-theme';
 const BG_KEY = 'usc-bg';
@@ -18,6 +38,12 @@ const BG_LABELS = {
   ru: ['Светлая', 'Тёмная'], en: ['Light', 'Dark'],
   fr: ['Claire', 'Sombre'], es: ['Clara', 'Oscura']
 };
+
+// корень сайта (абсолютный путь) — от расположения этого скрипта
+const SITE_ROOT = (function () {
+  var s = document.currentScript && document.currentScript.src;
+  return s ? s.substring(0, s.lastIndexOf('/') + 1) : '';
+})();
 
 // --- тема: ставим сразу, до отрисовки ---
 (function () {
@@ -53,15 +79,13 @@ function initGateway() {
   });
 }
 
-// --- фон: случайное фото из пула, без повтора подряд ---
+// --- пути ---
 function basePath() {
   var b = document.documentElement.getAttribute('data-base') || document.body.getAttribute('data-base');
-  if (b) return b;
-  var seg = location.pathname.replace(/\/$/, '').split('/');
-  var d = seg.length - 2, s = '';
-  while (d-- > 0) s += '../';
-  return s;
+  return b || SITE_ROOT;
 }
+
+// --- фон: случайное фото из пула, без повтора подряд ---
 function initBackground() {
   var bg = document.createElement('div');
   bg.id = 'usc-bg';
@@ -79,28 +103,38 @@ function pickBackground(theme) {
   document.documentElement.style.setProperty('--bg-photo', 'url("' + basePath() + 'img/' + name + '")');
 }
 
-// --- лендинги: шапка и подвал ---
+// --- лендинги и разделы: шапка (бренд, меню, языки) и подвал ---
 function injectChrome() {
   const body = document.body;
   const lang = document.documentElement.dataset.lang || document.documentElement.lang || 'en';
   const base = body.dataset.base || basePath();
+  const brand = SITE.brand[lang] || SITE.brand.ru;
 
   const header = document.createElement('header');
   header.className = 'site-header';
   header.innerHTML = `
-    <a class="brand" href="${base}index.html">${SITE.brand} · ${SITE.year}</a>
+    <a class="brand" href="${SITE_ROOT}index.html">${brand} · ${SITE.year}</a>
+    <nav class="site-menu">${menuLinks(lang, base)}</nav>
     <nav class="lang-switch">${langLinks(lang, base)}</nav>`;
 
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
   footer.innerHTML = `
-    <span>© ${SITE.year} ${SITE.brand}</span>
+    <span>${FOOTER[lang] || FOOTER.en}</span>
     <a href="${SITE.telegram}" target="_blank" rel="noopener">Telegram</a>`;
 
   body.prepend(header);
   body.append(footer);
 
   themeToggle(header);
+}
+
+function menuLinks(lang, base) {
+  var path = location.pathname;
+  return MENU.map(m => {
+    var active = path.indexOf('/' + m.code + '/') !== -1 ? ' class="active"' : '';
+    return `<a${active} href="${base}${m.code}/${m.code}_${lang}.html">${m[lang] || m.en}</a>`;
+  }).join('');
 }
 
 function langLinks(current, base) {
