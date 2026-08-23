@@ -27,10 +27,8 @@ function pickQuotes(n, key) {
 }
 
 function injectEpigraph() {
-  // Ищем элемент. Если его нет на странице (как в Конституции) - просто выходим.
   var target = document.querySelector('.hero-epigraph');
   if (!target) return; 
-  
   var lang = document.documentElement.dataset.lang || 'ru';
   var q = pickQuotes(1, 'ep')[0];
   if (q) target.textContent = '«' + (q[lang] || q.ru) + '»';
@@ -50,16 +48,21 @@ async function initGateway() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+async function init() {
   await loadQuotes();
   if (document.body.classList.contains('gateway')) {
     initGateway();
   }
-  // Вызываем заполнение. Если элемента нет, функция просто ничего не сделает.
   injectEpigraph();
-});
+}
+
+// Умный запуск
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 
 window.addEventListener('langChanged', () => {
-  // При смене языка тоже обновляем, если элемент есть
   injectEpigraph();
 });

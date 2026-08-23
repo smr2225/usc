@@ -1,3 +1,4 @@
+// main.js
 const THEME_KEY = 'usc-theme';
 const BG_KEY = 'usc-bg';
 const BG_POOL = { dark: 2, light: 2 };
@@ -35,6 +36,29 @@ function pickBackground(theme) {
   document.documentElement.style.setProperty('--bg-photo', 'url("' + root + 'img/' + name + '")');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function bgLabels() {
+  var m = document.documentElement.dataset.lang || 'ru';
+  if (typeof getTrns === 'function' && getTrns()) {
+    return getTrns().bg_labels[m] || ['Light', 'Dark'];
+  }
+  return ['Light', 'Dark'];
+}
+
+function bindThemeToggle(btn) {
+  var cur = document.documentElement.getAttribute('data-theme');
+  btn.title = bgLabels()[cur === 'dark' ? 0 : 1];
+  btn.addEventListener('click', function () {
+    cur = (cur === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(THEME_KEY, cur); } catch (e) {}
+    document.documentElement.setAttribute('data-theme', cur);
+    if (typeof pickBackground === 'function') pickBackground(cur);
+    this.title = bgLabels()[cur === 'dark' ? 0 : 1];
+  });
+}
+
+// Умный запуск
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initBackground);
+} else {
   initBackground();
-});
+}

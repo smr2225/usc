@@ -131,4 +131,8 @@ async function initEmblem() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', initEmblem);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initEmblem);
+} else {
+  initEmblem();
+}
