@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" data-lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ССГ 2222 — Конституция</title>
+  <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="cnst.css">
+  <script>
+    try {
+      var savedLang = localStorage.getItem('usc-lang') || 'ru';
+      document.documentElement.lang = savedLang;
+      document.documentElement.dataset.lang = savedLang;
+    } catch(e) {}
+  </script>
+</head>
+<body class="landing" data-inject="chrome" data-base="../">
+
+  <section class="hero">
+    <h1 id="tr-title"></h1>
+  </section>
+
+  <section class="cnst-container">
+    <!-- Краткая редакция (только статьи, как ссылки) -->
+    <div id="cnst-short-content"></div>
+
+    <!-- Полная редакция -->
+    <h2 class="cnst-full-title" id="tr-full-title"></h2>
+    <div id="cnst-full-content"></div>
+  </section>
+
+  <script src="../main.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/quot.js"></script>
+  <script src="cnst.js"></script>
+</body>
+</html>

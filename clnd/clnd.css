@@ -1,0 +1,22 @@
+.clnd-epigraph { margin-left: 40%; width: auto; max-width: fit-content; margin-top: 1rem; margin-bottom: 1rem; }
+
+.clnd-calendar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0; }
+@media (max-width: 768px) { .clnd-calendar-grid { grid-template-columns: 1fr; } }
+
+.clnd-month { border: 1px solid var(--border); border-radius: 6px; background: transparent; overflow: hidden; }
+.clnd-month-header { padding: 0.5rem 0.8rem; text-align: center; background: var(--panel); border-bottom: 1px solid var(--border); }
+.clnd-month-name { font-weight: bold; color: var(--accent); font-size: 1rem; }
+
+.clnd-weekdays { display: flex; justify-content: space-around; padding: 0.3rem 0; background: transparent; font-size: 0.75rem; color: var(--muted); }
+/* ВЫХОДНЫЕ В ЗАГОЛОВКЕ КРАСНЫЕ */
+.clnd-weekdays span:nth-child(6), .clnd-weekdays span:nth-child(7) { color: var(--accent); font-weight: bold; }
+
+.clnd-days { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; gap: 1px; background: transparent; }
+.clnd-day { background: transparent; text-align: center; padding: 0.35rem 0; font-size: 0.8rem; color: var(--text); }
+.clnd-day.weekend, .clnd-day.holiday { color: var(--accent); font-weight: bold; }
+.clnd-day.floating { color: var(--muted); font-weight: bold; opacity: 0.8; }
+
+.clnd-description { margin-top: 1rem; line-height: 1.6; }
+.clnd-epoch-inline { display: block; text-align: center; margin-top: 2rem; margin-bottom: 1rem; color: var(--muted); font-weight: bold; }
+.clnd-description h3 { margin: 1rem 0 0.5rem; color: var(--text); }
+.clnd-description p { margin: 0 0 1rem 0; color: var(--text); }

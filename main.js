@@ -1,91 +1,6 @@
-// USC 2222 — общий каркас
-const SITE = {
-  year: 2222,
-  brand: { ru: 'Марс', en: 'Mars', fr: 'Mars', es: 'Marte' },
-  telegram: 'https://t.me/s_mars_r',
-  langs: [
-    { code: 'en', name: 'English' },
-    { code: 'es', name: 'Español' },
-    { code: 'fr', name: 'Français' },
-    { code: 'ru', name: 'Русский' },
-  ],
-};
-
-const MENU = [
-  { code: 'svts', ru: 'Советы',      en: 'Soviets',      fr: 'Soviets',      es: 'Soviets' },
-  { code: 'cnst', ru: 'Конституция', en: 'Constitution', fr: 'Constitution', es: 'Constitución' },
-  { code: 'thry', ru: 'Диамат',      en: 'Diamat',       fr: 'Diamat',       es: 'Diamat' },
-  { code: 'clnd', ru: 'Календарь',   en: 'Calendar',     fr: 'Calendrier',   es: 'Calendario' },
-  { code: 'dscn', ru: 'Обсуждения',  en: 'Discussions',  fr: 'Discussions',  es: 'Discusiones' },
-  { code: 'hist', ru: 'Истории',     en: 'Stories',      fr: 'Histoires',    es: 'Historias' },
-  { code: 'glsr', ru: 'Глоссарий',   en: 'Glossary',     fr: 'Glossaire',    es: 'Glosario' },
-  { code: 'bout', ru: 'О сайте',     en: 'About',        fr: 'À propos',     es: 'Acerca de' },
-];
-
-const FOOTER = {
-  ru: '© Второй марсианский Союз Советов Граждан 2226. Все права принадлежат гражданам.',
-  en: '© Second Martian Union of Soviets of Citizens 2226. All rights belong to the citizens.',
-  fr: '© Seconde Union Martienne des Soviets de Citoyens 2226. Tous les droits appartiennent aux citoyens.',
-  es: '© Segunda Unión Marciana de Soviets de Ciudadanos 2226. Todos los derechos pertenecen a los ciudadanos.',
-};
-
-// ===== ПУЛ ЦИТАТ (40) =====
-const QUOTES = [
-{ru:'Культура посредством труда преобразует окружающую среду, увеличивая её сложность и упорядоченность, обеспечивая тем самым расширение свободы сообщества.',en:'Culture, through labor, transforms the environment, increasing its complexity and order, thereby expanding the freedom of the community.',es:'La cultura, mediante el trabajo, transforma el entorno, aumentando su complejidad y orden, asegurando así la expansión de la libertad de la comunidad.',fr:'La culture, par le travail, transforme l’environnement, en augmentant sa complexité et son ordre, assurant ainsi l’expansion de la liberté de la communauté.'},
-{ru:'Конституция является основой самоорганизации культуры и закрепляет принципы её действия для сообщества.',en:'The Constitution is the foundation of the self-organization of culture and enshrines the principles of its operation for the community.',es:'La Constitución es la base de la autoorganización de la cultura y consagra los principios de su acción para la comunidad.',fr:'La Constitution est le fondement de l’auto-organisation de la culture et fixe les principes de son action pour la communauté.'},
-{ru:'Труд — это основа воспроизводства культуры.',en:'Labor is the foundation of the reproduction of culture.',es:'El trabajo es la base de la reproducción de la cultura.',fr:'Le travail est le fondement de la reproduction de la culture.'},
-{ru:'Труд — сознательная (понятийная) целенаправленная систематическая организация коллективного действия по преобразованию природы для получения благ обществом.',en:'Labor is the conscious, purposeful, systematic organization of collective action to transform nature for the benefit of society.',es:'El trabajo es la organización consciente, dirigida y sistemática de la acción colectiva para transformar la naturaleza y obtener bienes para la sociedad.',fr:'Le travail est l’organisation consciente, ciblée et systématique de l’action collective pour transformer la nature au profit de la société.'},
-{ru:'Граждане используют, создают и изменяют формы культуры...',en:'Citizens use, create, and transform the forms of culture...',es:'Los ciudadanos usan, crean y modifican las formas de la cultura...',fr:'Les citoyens utilisent, créent et modifient les formes de la culture...'},
-{ru:'Общественно значимые результаты культуры подлежат сохранению и доступу...',en:'Socially significant products of culture are subject to preservation and access...',es:'Los resultados de la cultura socialmente significativos están sujetos a conservación y acceso...',fr:'Les résultats de la culture socialement significatifs sont soumis à conservation et à accès...'},
-{ru:'Образование — основа общества, главный ресурс, требующий постоянного расширенного воспроизводства.',en:'Education is the foundation of society, the chief resource, requiring constant expanded reproduction.',es:'La educación es la base de la sociedad, el recurso principal, que exige una reproducción ampliada constante.',fr:'L’éducation est le fondement de la société, la ressource principale, exigeant une reproduction élargie constante.'},
-{ru:'Гражданин есть основание ССГ, его источник власти.',en:'The citizen is the foundation of the USC, its source of power.',es:'El ciudadano es la base de la USC, su fuente de poder.',fr:'Le citoyen est le fondement de l’USC, sa source de pouvoir.'},
-{ru:'Гражданин есть интеллект, включённый в культуру ССГ, на правовой и политической основе по рождению или по воле.',en:'A citizen is an intellect included in the culture of the USC, on a legal and political basis, by birth or by will.',es:'El ciudadano es un intelecto incluido en la cultura de la USC, sobre una base jurídica y política, por nacimiento o por voluntad.',fr:'Le citoyen est un intellect intégré à la culture de l’USC, sur une base juridique et politique, par naissance ou par volonté.'},
-{ru:'Свобода — это мера возможностей субъекта в реальности.',en:'Freedom is the measure of the subject’s possibilities in reality.',es:'La libertad es la medida de las posibilidades del sujeto en la realidad.',fr:'La liberté est la mesure des possibilités du sujet dans la réalité.'},
-{ru:'Второй марсианский — ведь первые погибли...',en:'The Second Martian — for the first ones perished...',es:'El Segundo Marciano — pues los primeros perecieron...',fr:'Le Second Martien — car les premiers ont péri...'},
-{ru:'Безопасность является основополагающим условием существования общества в космических марсианских условиях...',en:'Security is the fundamental condition for the existence of society in the cosmic Martian conditions...',es:'La seguridad es la condición fundamental para la existencia de la sociedad en las condiciones cósmicas marcianas...',fr:'La sécurité est la condition fondamentale de l’existence de la société dans les conditions cosmiques martiennes...'},
-{ru:'Для граждан ССГ положения о гражданстве, сангах и Советах ССГ действуют независимо от территориальной юрисдикции.',en:'For citizens of the USC, the provisions on citizenship, sanghas, and the Soviets of the USC apply regardless of territorial jurisdiction.',es:'Para los ciudadanos de la USC, las disposiciones sobre ciudadanía, sanghas y Soviets de la USC rigen independientemente de la jurisdicción territorial.',fr:'Pour les citoyens de l’USC, les dispositions sur la citoyenneté, les sanghas et les Soviets de l’USC s’appliquent indépendamment de la juridiction territoriale.'},
-{ru:'Запрет санг ССГ лишает акты и решения соответствующей юрисдикции значения для ССГ.',en:'The prohibition of the sanghas of the USC deprives the acts and decisions of the corresponding jurisdiction of any significance for the USC.',es:'La prohibición de las sanghas de la USC priva de valor para la USC a los actos y decisiones de la jurisdicción correspondiente.',fr:'L’interdiction des sanghas de l’USC prive de signification pour l’USC les actes et décisions de la juridiction correspondante.'},
-{ru:'Оторванность от ССГ не повод для нарушения Конституции.',en:'Separation from the USC is no reason to violate the Constitution.',es:'La separación de la USC no es motivo para violar la Constitución.',fr:'La séparation d’avec l’USC n’est pas une raison pour violer la Constitution.'},
-{ru:'Советы есть высшая представительная власть в ССГ.',en:'The Soviets are the supreme representative power in the USC.',es:'Los Soviets son el poder representativo supremo en la USC.',fr:'Les Soviets sont le pouvoir représentatif suprême dans l’USC.'},
-{ru:'Делегаты обязаны точно доносить слова и дух переданной им политической воли совета...',en:'Delegates are obliged to faithfully convey the words and spirit of the political will of the soviet entrusted to them...',es:'Los delegados están obligados a transmitir con exactitud las palabras y el espíritu de la voluntad política del soviet que les fue confiada...',fr:'Les délégués sont tenus de transmettre fidèlement les mots et l’esprit de la volonté politique du soviet qui leur a été confiée...'},
-{ru:'Конституция — закон прямого действия.',en:'The Constitution is a law of direct effect.',es:'La Constitución es una ley de acción directa.',fr:'La Constitution est une loi d’effet direct.'},
-{ru:'Все решения, действия являются законными только в рамках конституции.',en:'All decisions and actions are lawful only within the framework of the Constitution.',es:'Todas las decisiones y acciones son legítimas solo en el marco de la Constitución.',fr:'Toutes les décisions et actions ne sont légitimes que dans le cadre de la Constitution.'},
-{ru:'Бездействие тоже является действием.',en:'Inaction is also an action.',es:'La inacción también es una acción.',fr:'L’inaction est aussi une action.'},
-{ru:'Налогов нет.',en:'There are no taxes.',es:'No hay impuestos.',fr:'Il n’y a pas d’impôts.'},
-{ru:'Жизнь — это в первую очередь информационный процесс.',en:'Life is, first of all, an information process.',es:'La vida es, ante todo, un proceso informativo.',fr:'La vie est, avant tout, un processus informationnel.'},
-{ru:'Культура — это форма социальной материи, в которой информационные процессы в виде труда преобразуют окружающую среду, увеличивая её сложность и упорядоченность для обеспечения большей свободы сообщества.',en:'Culture is a form of social matter in which information processes, in the form of labor, transform the environment, increasing its complexity and order to ensure greater freedom of the community.',es:'La cultura es una forma de materia social en la que los procesos informativos, en forma de trabajo, transforman el entorno, aumentando su complejidad y orden para asegurar una mayor libertad de la comunidad.',fr:'La culture est une forme de matière sociale dans laquelle les processus informationnels, sous forme de travail, transforment l’environnement, en augmentant sa complexité et son ordre pour assurer une plus grande liberté de la communauté.'},
-{ru:'Сознание — это отражение отражения в моделях.',en:'Consciousness is the reflection of reflection in models.',es:'La conciencia es el reflejo del reflejo en los modelos.',fr:'La conscience est le reflet du reflet dans les modèles.'},
-{ru:'Труд — это единственный механизм, который накапливает снятие ограничений реальности через время. Каждое поколение начинает не с нуля — а с того уровня преобразования реальности, который достигнут предыдущими.',en:'Labor is the only mechanism that accumulates the overcoming of reality’s limits over time. Each generation begins not from zero, but from the level of transformation of reality achieved by those before.',es:'El trabajo es el único mecanismo que acumula la superación de las limitaciones de la realidad a través del tiempo. Cada generación comienza no desde cero, sino desde el nivel de transformación de la realidad alcanzado por las anteriores.',fr:'Le travail est le seul mécanisme qui accumule le dépassement des limites de la réalité à travers le temps. Chaque génération commence non pas de zéro, mais du niveau de transformation de la réalité atteint par les précédentes.'},
-{ru:'Человек разумный начался не с самосознания или мозга, совместной охоты или палки в руках, а с костра, вокруг которого этот мозг научился думать о завтрашнем дне. Всё остальное — следствие.',en:'Homo sapiens began not with self-consciousness or the brain, joint hunting or a stick in hand, but with the fire around which that brain learned to think about tomorrow. Everything else is a consequence.',es:'El Homo sapiens comenzó no con la autoconciencia o el cerebro, la caza conjunta o un palo en la mano, sino con la hoguera alrededor de la cual ese cerebro aprendió a pensar en el mañana. Todo lo demás es consecuencia.',fr:'L’Homo sapiens a commencé non par la conscience de soi ou le cerveau, la chasse collective ou un bâton en main, mais par le feu autour duquel ce cerveau a appris à penser à demain. Tout le reste est conséquence.'},
-{ru:'Разум — это не причина человека, а результат труда. Он возник не «в голове», а в действии, в котором материя начала целенаправленно преобразовывать среду, и вынуждена была удерживать понятие, чтобы действовать не по инстинкту, а по модели.',en:'Reason is not the cause of the human, but the result of labor. It arose not “in the head,” but in the action in which matter began to purposefully transform the environment, and was compelled to hold a concept in order to act not by instinct, but by model.',es:'La razón no es la causa del ser humano, sino el resultado del trabajo. Surgió no “en la cabeza”, sino en la acción en la que la materia comenzó a transformar el entorno de manera dirigida, y se vio obligada a retener un concepto para actuar no por instinto, sino por modelo.',fr:'La raison n’est pas la cause de l’humain, mais le résultat du travail. Elle est née non « dans la tête », mais dans l’action par laquelle la matière a commencé à transformer l’environnement de manière ciblée, et a été contrainte de retenir un concept pour agir non par instinct, mais par modèle.'},
-{ru:'Отчуждение — это процесс передачи культуры. Знания, навыки, инструменты, продукты передаются только через отчуждение.',en:'Alienation is the process of transmitting culture. Knowledge, skills, tools, and products are transmitted only through alienation.',es:'La alienación es el proceso de transmisión de la cultura. Los conocimientos, las habilidades, las herramientas y los productos se transmiten solo a través de la alienación.',fr:'L’aliénation est le processus de transmission de la culture. Les connaissances, les compétences, les outils et les produits ne se transmettent que par l’aliénation.'},
-{ru:'Субъект — информационная система, осуществляющая действие согласно своему выбору.',en:'The subject is an information system that acts according to its own choice.',es:'El sujeto es un sistema de información que actúa según su propia elección.',fr:'Le sujet est un système d’information qui agit selon son propre choix.'},
-{ru:'Информация — это содержание процесса отражения.',en:'Information is the content of the process of reflection.',es:'La información es el contenido del proceso de reflejo.',fr:'L’information est le contenu du processus de reflet.'},
-{ru:'Научная философия бывает только научной, т.е. общей для данной реальности.',en:'Scientific philosophy is scientific only insofar as it is universal for the given reality.',es:'La filosofía científica solo es científica en cuanto es común para la realidad dada.',fr:'La philosophie scientifique n’est scientifique qu’en tant qu’elle est commune à la réalité donnée.'},
-{ru:'Труд — универсальный валидатор усвоения.',en:'Labor is the universal validator of assimilation.',es:'El trabajo es el validador universal de la asimilación.',fr:'Le travail est le validateur universel de l’assimilation.'},
-{ru:'Конкуренция — необходимое условие отбора.',en:'Competition is a necessary condition of selection.',es:'La competencia es una condición necesaria de la selección.',fr:'La concurrence est une condition nécessaire de la sélection.'},
-{ru:'Оценка — по последствию, а не по действию.',en:'Evaluation is by consequence, not by action.',es:'La evaluación es por la consecuencia, no por la acción.',fr:'L’évaluation se fait par la conséquence, non par l’action.'},
-{ru:'Принуждение есть борьба социального с биологическим.',en:'Coercion is the struggle of the social against the biological.',es:'La coerción es la lucha de lo social contra lo biológico.',fr:'La coercition est la lutte du social contre le biologique.'},
-{ru:'Воля — способность субъекта обеспечивать исполнение принятой цели.',en:'Will is the subject’s capacity to ensure the execution of an adopted goal.',es:'La voluntad es la capacidad del sujeto para asegurar la ejecución de un objetivo adoptado.',fr:'La volonté est la capacité du sujet à assurer l’exécution d’un objectif adopté.'},
-{ru:'Истина — соответствие объекта идее, взятой в основу преобразования реальности.',en:'Truth is the correspondence of the object to the idea taken as the basis for transforming reality.',es:'La verdad es la correspondencia del objeto con la idea tomada como base para transformar la realidad.',fr:'La vérité est la correspondance de l’objet à l’idée prise comme base de la transformation de la réalité.'},
-{ru:'Правота — претензия на формально непротиворечивую модель.',en:'Rightness is the claim to a formally non-contradictory model.',es:'La justeza es la pretensión de un modelo formalmente no contradictorio.',fr:'La justesse est la prétention à un modèle formellement non contradictoire.'},
-{ru:'Модель — упрощенное отражение реальности в информационной системе.',en:'A model is a simplified reflection of reality in an information system.',es:'Un modelo es un reflejo simplificado de la realidad en un sistema de información.',fr:'Un modèle est un reflet simplifié de la réalité dans un système d’information.'},
-{ru:'«Информация — это разнообразие, которое один объект содержит о другом объекте (в процессе их взаимодействия)». А. Д. Урсул',en:'“Information is the variety that one object contains about another object (in the process of their interaction).” — A. D. Ursul',es:'«La información es la variedad que un objeto contiene sobre otro objeto (en el proceso de su interacción)». — A. D. Ursul',fr:'« L’information est la variété qu’un objet contient sur un autre objet (dans le processus de leur interaction). » — A. D. Ursul'},
-];
-
-const LANG_KEY = 'usc-lang';
 const THEME_KEY = 'usc-theme';
 const BG_KEY = 'usc-bg';
 const BG_POOL = { dark: 2, light: 2 };
-const BG_LABELS = {
-  ru: ['Светлая', 'Тёмная'], en: ['Light', 'Dark'],
-  fr: ['Claire', 'Sombre'], es: ['Clara', 'Oscura']
-};
-
-const SITE_ROOT = (function () {
-  var s = document.currentScript && document.currentScript.src;
-  return s ? s.substring(0, s.lastIndexOf('/') + 1) : '';
-})();
 
 (function () {
   var saved = null;
@@ -96,64 +11,9 @@ const SITE_ROOT = (function () {
   document.documentElement.setAttribute('data-theme', saved);
 })();
 
-(function () {
-  var m = location.pathname.match(/\/(ru|en|fr|es)\//);
-  if (m) document.documentElement.lang = m[1];
-})();
-
-document.addEventListener('DOMContentLoaded', () => {
-  initBackground();
-  const body = document.body;
-  if (body.classList.contains('gateway')) initGateway();
-  if (body.dataset.inject === 'chrome') { injectChrome(); injectEpigraph(); }
-});
-
-// --- выбор цитат без повтора подряд ---
-function pickQuotes(n, key) {
-  var lastKey = 'usc-q-' + key, last = [];
-  try { last = JSON.parse(localStorage.getItem(lastKey)) || []; } catch (e) {}
-  var source = QUOTES.map((_, i) => i).filter(i => last.indexOf(i) === -1);
-  if (source.length < n) source = QUOTES.map((_, i) => i);
-  var idxs = [];
-  while (idxs.length < n && source.length) {
-    idxs.push(source.splice(Math.floor(Math.random() * source.length), 1)[0]);
-  }
-  try { localStorage.setItem(lastKey, JSON.stringify(idxs)); } catch (e) {}
-  return idxs.map(i => QUOTES[i]);
-}
-
-// --- гейтвей: цитаты из пула + выбор языка ---
-function initGateway() {
-  var qs = pickQuotes(4, 'gw');
-  document.querySelectorAll('.gw-quote').forEach((a, i) => {
-    var text = a.querySelector('.gw-text');
-    if (qs[i] && text) text.textContent = qs[i][a.dataset.lang] || qs[i].ru;
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      try { localStorage.setItem(LANG_KEY, a.dataset.lang); } catch (e) {}
-      location.href = a.getAttribute('href');
-    });
-  });
-}
-
-// --- эпиграф на лендингах и в разделах ---
-function injectEpigraph() {
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
-  var target = hero.querySelector('.hero-epigraph');
-  if (!target) {
-    target = document.createElement('p');
-    target.className = 'hero-epigraph';
-    hero.appendChild(target);
-  }
-  var lang = document.documentElement.dataset.lang || document.documentElement.lang || 'en';
-  var q = pickQuotes(1, 'ep')[0];
-  if (q) target.textContent = '«' + (q[lang] || q.ru) + '»';
-}
-
 function basePath() {
   var b = document.documentElement.getAttribute('data-base') || document.body.getAttribute('data-base');
-  return b || SITE_ROOT;
+  return b !== undefined ? b : './';
 }
 
 function initBackground() {
@@ -162,6 +22,7 @@ function initBackground() {
   document.body.insertBefore(bg, document.body.firstChild);
   pickBackground(document.documentElement.getAttribute('data-theme'));
 }
+
 function pickBackground(theme) {
   var n = BG_POOL[theme] || 0;
   if (!n) return;
@@ -170,66 +31,10 @@ function pickBackground(theme) {
   if (n > 1 && theme + ':' + k === last) k = (k % n) + 1;
   try { localStorage.setItem(BG_KEY, theme + ':' + k); } catch (e) {}
   var name = (theme === 'dark' ? 'bd' : 'bl') + (k < 10 ? '0' : '') + k + '.jpg';
-  document.documentElement.style.setProperty('--bg-photo', 'url("' + basePath() + 'img/' + name + '")');
+  var root = basePath() || './';
+  document.documentElement.style.setProperty('--bg-photo', 'url("' + root + 'img/' + name + '")');
 }
 
-function injectChrome() {
-  const body = document.body;
-  const lang = document.documentElement.dataset.lang || document.documentElement.lang || 'en';
-  const base = body.dataset.base || basePath();
-  const brand = SITE.brand[lang] || SITE.brand.ru;
-
-  const header = document.createElement('header');
-  header.className = 'site-header';
-  header.innerHTML = `
-    <a class="brand" href="${SITE_ROOT}index.html">${brand} · ${SITE.year}</a>
-    <nav class="site-menu">${menuLinks(lang, base)}</nav>
-    <nav class="lang-switch">${langLinks(lang, base)}</nav>`;
-
-  const footer = document.createElement('footer');
-  footer.className = 'site-footer';
-  footer.innerHTML = `
-    <span>${FOOTER[lang] || FOOTER.en}</span>
-    <a href="${SITE.telegram}" target="_blank" rel="noopener">Telegram</a>`;
-
-  body.prepend(header);
-  body.append(footer);
-
-  themeToggle(header);
-}
-
-function menuLinks(lang, base) {
-  var path = location.pathname;
-  return MENU.map(m => {
-    var active = path.indexOf('/' + m.code + '/') !== -1 ? ' class="active"' : '';
-    return `<a${active} href="${base}${m.code}/${m.code}_${lang}.html">${m[lang] || m.en}</a>`;
-  }).join('');
-}
-
-function langLinks(current, base) {
-  return SITE.langs.map(l =>
-    `<a class="${l.code === current ? 'active' : ''}" href="${base}${l.code}/">${l.code}</a>`
-  ).join('');
-}
-
-function themeToggle(header) {
-  var cur = document.documentElement.getAttribute('data-theme');
-  var labels = bgLabels();
-  var b = document.createElement('button');
-  b.type = 'button';
-  b.id = 'usc-theme-toggle';
-  b.textContent = '◐';
-  b.title = labels[cur === 'dark' ? 0 : 1];
-  b.addEventListener('click', function () {
-    cur = (cur === 'dark') ? 'light' : 'dark';
-    try { localStorage.setItem(THEME_KEY, cur); } catch (e) {}
-    document.documentElement.setAttribute('data-theme', cur);
-    pickBackground(cur);
-    b.title = labels[cur === 'dark' ? 0 : 1];
-  });
-  header.appendChild(b);
-}
-function bgLabels() {
-  var m = location.pathname.match(/\/(ru|en|fr|es)\//);
-  return (m && BG_LABELS[m[1]]) || BG_LABELS.en;
-}
+document.addEventListener('DOMContentLoaded', () => {
+  initBackground();
+});

@@ -1,0 +1,16 @@
+[
+  { "id": "title", "ru": "Второй марсианский Союз Советов Граждан", "en": "Second Martian Union of Citizens' Soviets", "es": "Segunda Unión Marciana de Soviets de Ciudadanos", "fr": "Seconde Union Martienne des Soviets de Citoyens" },
+  { "id": "telemetry_global", "ru": "Глобальная телеметрия среды", "en": "Global Environmental Telemetry", "es": "Telemetría Ambiental Global", "fr": "Télémétrie Environnementale Globale" },
+  { "id": "entry_time_label", "ru": "Время входа", "en": "Entry Time", "es": "Hora de Entrada", "fr": "Heure d'Entrée" },
+  { "id": "entry_time_text", "ru": "Вход {mars_time} по времени Первого кластера ({mars_date}), что соответствует {earth_time} по времени Перуанского космодрома.", "en": "Entry at {mars_time} First cluster time ({mars_date}), which corresponds to {earth_time} Peruvian spaceport time.", "es": "Entrada a las {mars_time} hora del Primer clúster ({mars_date}), que corresponde a {earth_time} hora del Puerto espacial peruano.", "fr": "Entrée à {mars_time} heure du Premier cluster ({mars_date}), ce qui correspond à {earth_time} heure du Port spatial péruvien." },
+  { "id": "mars_rad", "ru": "Солнечная радиация", "en": "Solar Radiation", "es": "Radiación Solar", "fr": "Rayonnement Solaire" },
+  { "id": "mars_dust", "ru": "Состояние атмосферы", "en": "Atmospheric State", "es": "Estado de la Atmósfera", "fr": "État de l'Atmosphère" },
+  { "id": "mars_meteor", "ru": "Метеоритная опасность", "en": "Meteor Hazard", "es": "Peligro de Meteoritos", "fr": "Danger de Météorites" },
+  { "id": "mars_sun", "ru": "Наклонение Солнца", "en": "Sun Inclination", "es": "Inclinación del Sol", "fr": "Inclinaison du Soleil" },
+  { "id": "mars_moons", "ru": "Пролет спутников", "en": "Satellite Flyby", "es": "Vuelo de Satélites", "fr": "Passage de Satellites" },
+  { "id": "mars_dist", "ru": "Дистанция и связь", "en": "Distance and Comms", "es": "Distancia y Comms", "fr": "Distance et Comms" },
+  { "id": "access_title", "ru": "Доступ к культуре", "en": "Access to Culture", "es": "Acceso a la Cultura", "fr": "Accès à la Culture" },
+  { "id": "access_text", "ru": "Земные практики здесь не выжили. Выжило это.", "en": "Earthly practices did not survive here. This survived.", "es": "Las prácticas terrestres no sobrevivieron aquí. Sobrevivió esto.", "fr": "Les pratiques terrestres n'ont pas survécu ici. Ceci a survécu." },
+  { "id": "roots_title", "ru": "Основания", "en": "Foundations", "es": "Fundamentos", "fr": "Fondements" },
+  { "id": "roots_text", "ru": "Материя восходит: энергия → поле → частица → жизнь → труд → культура → звёзды.", "en": "Matter ascends: energy → field → particle → life → labor → culture → stars.", "es": "La materia asciende: energía → campo → partícula → vida → trabajo → cultura → estrellas.", "fr": "La matière s'élève : énergie → champ → particule → vie → travail → culture → étoiles." }
+]

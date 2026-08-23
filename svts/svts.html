@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" data-lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ССГ 2222 — Панель</title>
+  <link rel="stylesheet" href="../main.css">
+  <script>
+    try {
+      var savedLang = localStorage.getItem('usc-lang') || 'ru';
+      document.documentElement.lang = savedLang;
+      document.documentElement.dataset.lang = savedLang;
+    } catch(e) {}
+  </script>
+  <style>
+    .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .data-item { border: 1px solid var(--border); padding: 1rem; border-radius: 6px; background: var(--panel); }
+    .data-label { font-size: 0.85rem; color: var(--muted); display: block; margin-bottom: 0.5rem; }
+    .data-value { font-family: var(--mono); font-size: 1rem; color: var(--text); }
+    /* Время входа на всю ширину */
+    .entry-full { grid-column: 1 / -1; text-align: center; font-size: 1.1rem; }
+  </style>
+</head>
+<body class="landing" data-inject="chrome" data-base="../">
+
+  <section class="hero">
+    <div class="hero-emblem">
+      <svg id="svgCanvas" xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" width="100" height="100">
+          <defs><style>.c0 { fill: #FF4136; } .c1 { fill: #0074D9; } .c2 { fill: #2ECC40; } .c3 { fill: #FFDC00; } .c4 { fill: #B10DC9; }</style></defs>
+          <g id="scene"></g>
+      </svg>
+    </div>
+    <h1 id="tr-title"></h1>
+    <p class="hero-epigraph"></p>
+  </section>
+
+  <section class="panel live-data">
+    <h2 id="tr-telemetry_global"></h2>
+    <div class="data-grid">
+      <div class="data-item entry-full">
+        <span class="data-label" id="tr-entry_time_label"></span>
+        <span class="data-value" id="entry-time">—</span>
+      </div>
+      <div class="data-item">
+        <span class="data-label" id="tr-mars_rad"></span>
+        <span class="data-value" id="mars-rad">—</span>
+      </div>
+      <div class="data-item">
+        <span class="data-label" id="tr-mars_sun"></span>
+        <span class="data-value" id="mars-sun">—</span>
+      </div>
+      <div class="data-item">
+        <span class="data-label" id="tr-mars_dust"></span>
+        <span class="data-value" id="mars-dust">—</span>
+      </div>
+      <div class="data-item">
+        <span class="data-label" id="tr-mars_meteor"></span>
+        <span class="data-value" id="mars-meteor">—</span>
+      </div>
+      <div class="data-item">
+        <span class="data-label" id="tr-mars_moons"></span>
+        <span class="data-value" id="mars-moons">—</span>
+      </div>
+      <div class="data-item">
+        <span class="data-label" id="tr-mars_dist"></span>
+        <span class="data-value" id="mars-dist">—</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel access">
+    <h2 id="tr-access_title"></h2>
+    <p id="tr-access_text"></p>
+    <div class="cards">
+      <a class="card" href="../cnst/cnst.html">Конституция<small>Основа</small></a>
+      <a class="card soon" href="#">Диамат<small>скоро</small></a>
+      <a class="card" href="../clnd/clnd.html">Календарь<small>Основа</small></a>
+      <a class="card soon" href="#">Истории<small>скоро</small></a>
+      <a class="card soon" href="#">Глоссарий<small>скоро</small></a>
+    </div>
+  </section>
+
+  <section class="panel roots">
+    <h2 id="tr-roots_title"></h2>
+    <p id="tr-roots_text"></p>
+  </section>
+
+  <script src="../main.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/quot.js"></script>
+  <script src="../js/embl.js"></script>
+  <script src="svts.js"></script>
+</body>
+</html>
