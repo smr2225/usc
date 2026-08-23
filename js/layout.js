@@ -20,8 +20,8 @@ function renderLangLinks(current) {
 
 async function buildChrome() {
   const body = document.body;
-  const base = body.dataset.base !== undefined ? body.dataset.base : './';
-  
+  const base = window.SITE_ROOT || './';
+    
   // ЖЕМНЕЕ ЖДЕМ ЗАГРУЗКИ СЛОВАРЕЙ
   if (typeof loadTrns === 'function') {
     await loadTrns();

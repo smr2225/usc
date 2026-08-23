@@ -13,8 +13,7 @@ const BG_POOL = { dark: 2, light: 2 };
 })();
 
 function basePath() {
-  var b = document.documentElement.getAttribute('data-base') || document.body.getAttribute('data-base');
-  return b !== undefined ? b : './';
+  return window.SITE_ROOT || './';
 }
 
 function initBackground() {

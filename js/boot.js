@@ -3,12 +3,13 @@
     const currentScript = document.currentScript;
     if (!currentScript) return;
     
-    // Берем абсолютный путь, по которому браузер загрузил boot.js
     const bootSrc = currentScript.src;
-    const bootDir = bootSrc.substring(0, bootSrc.lastIndexOf('/js/') + 4); // .../js/
-    const rootDir = bootDir.replace('js/', ''); // .../
+    const bootDir = bootSrc.substring(0, bootSrc.lastIndexOf('/js/') + 4);
+    const rootDir = bootDir.replace('js/', ''); 
+    
+    // Устанавливаем глобальный корень сайта для всех скриптов
+    window.SITE_ROOT = rootDir;
 
-    // Строгий порядок загрузки
     const coreScripts = [
         rootDir + 'main.js',
         bootDir + 'trns.js',
@@ -27,7 +28,6 @@
         });
     }
 
-    // Загружаем по цепочке
     (async () => {
         for (const url of coreScripts) {
             try {

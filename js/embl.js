@@ -2,7 +2,7 @@ async function initEmblem() {
   const canvas = document.getElementById('svgCanvas');
   if (!canvas) return; 
 
-  const base = document.body.dataset.base || '';
+  const base = window.SITE_ROOT || '';
   const dataUrl = base + 'asset/geometry.json';
 
   try {

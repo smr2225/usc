@@ -4,7 +4,7 @@ let QUOTES_DATA = [];
 async function loadQuotes() {
   if (QUOTES_DATA.length > 0) return;
   try {
-    const base = document.body.dataset.base || '';
+    const base = window.SITE_ROOT || '';
     const response = await fetch(base + 'asset/quot.json');
     QUOTES_DATA = await response.json();
   } catch (e) {

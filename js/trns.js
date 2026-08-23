@@ -2,20 +2,15 @@
 let TRNS_DATA = null;
 let trnsPromise = null;
 
-// Возвращает Promise. Если уже скачано - возвращает мгновенно.
-function loadTrns() {
-  if (!trnsPromise) {
-    trnsPromise = (async () => {
-      try {
-        const base = document.body.dataset.base || '';
-        const response = await fetch(base + 'asset/ui.json');
-        TRNS_DATA = await response.json();
-      } catch (e) {
-        console.error('Ошибка загрузки ui.json:', e);
-      }
-    })();
+async function loadTrns() {
+  if (TRNS_DATA) return;
+  try {
+    const base = window.SITE_ROOT || '';
+    const response = await fetch(base + 'asset/ui.json');
+    TRNS_DATA = await response.json();
+  } catch (e) {
+    console.error('Ошибка загрузки ui.json:', e);
   }
-  return trnsPromise;
 }
 
 function getTrns() {
