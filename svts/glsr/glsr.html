@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" data-lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ССГ 2222 — Глоссарий</title>
+  <!-- FIX v9: пути ../../ т.к. glsr теперь в svts/glsr/ -->
+  <link rel="stylesheet" href="../../main.css">
+  <link rel="stylesheet" href="../../embl.css">
+  <link rel="stylesheet" href="../../mble.css">
+  <link rel="stylesheet" href="../../svts/svts.css">
+  <link rel="stylesheet" href="glsr.css">
+  <script>
+    try {
+      var savedLang = localStorage.getItem('usc-lang') || 'ru';
+      document.documentElement.lang = savedLang;
+      document.documentElement.dataset.lang = savedLang;
+    } catch(e) {}
+  </script>
+</head>
+<body class="landing" data-inject="chrome" data-base="../../">
+
+  <!-- фон-фото -->
+  <div id="usc-bg"></div>
+
+  <!-- шапка -->
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="site-menu" id="main-menu"></nav>
+      <nav class="lang-switch" id="lang-switch"></nav>
+      <button id="usc-theme-toggle">◐</button>
+    </div>
+  </header>
+
+  <!-- КОНТЕНТ -->
+  <section class="hero">
+    <div class="hero-emblem">
+      <canvas id="svgCanvas" width="190" height="190"></canvas>
+    </div>
+    <h1 id="tr-title"></h1>
+    <p class="hero-epigraph" id="tr-subtitle"></p>
+  </section>
+
+  <section class="panel glsr-intro-panel">
+    <p id="tr-intro"></p>
+  </section>
+
+  <section class="panel glsr-content">
+    <div id="glsr-body">
+      <!-- JS вставит сюда секции и записи -->
+    </div>
+  </section>
+
+  <!-- подвал -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span id="tr-footer"></span>
+      <a href="https://t.me/s_mars_r" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </footer>
+
+  <script src="../../js/boot.js"></script>
+  <script src="glsr.js"></script>
+</body>
+</html>

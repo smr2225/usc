@@ -1,3 +1,4 @@
+// js/embl.js
 async function initEmblem() {
   const canvas = document.getElementById('svgCanvas');
   if (!canvas) return; 
@@ -9,12 +10,11 @@ async function initEmblem() {
     const response = await fetch(dataUrl);
     const data = await response.json();
     
+    const ctx = canvas.getContext('2d');
     const vertices = data.vertices;
-    const polygons = data.polygons.map(p => ({ ...p, visibleEdges: [] }));
-    const svgNS = "http://www.w3.org/2000/svg";
-    const scene = document.getElementById('scene');
-    scene.innerHTML = ''; 
+    const polygons = data.polygons; // Файл уже очищен, фильтровать не надо!
 
+    // Вычисление видимых ребер (один раз при загрузке)
     const edgeMap = {};
     for (let i=0; i<polygons.length; i++) {
         const p = polygons[i];
@@ -28,6 +28,7 @@ async function initEmblem() {
 
     for (let i=0; i<polygons.length; i++) {
         const p = polygons[i];
+        p.visibleEdges = [];
         for (let j=0; j<p.verts.length; j++) {
             const v1 = p.verts[j], v2 = p.verts[(j+1)%p.verts.length];
             const key = Math.min(v1,v2) + "_" + Math.max(v1,v2);
@@ -41,32 +42,20 @@ async function initEmblem() {
         }
     }
 
-    const polyElements = [];
-    const lineElements = [];
-    scene.innerHTML = '';
-    
-    for (let i = 0; i < polygons.length; i++) {
-        const g = document.createElementNS(svgNS, 'g');
-        const poly = document.createElementNS(svgNS, 'polygon');
-        poly.setAttribute('stroke', 'none');
-        g.appendChild(poly);
-        
-        const lines = [];
-        for (let j=0; j<polygons[i].visibleEdges.length; j++) {
-            const line = document.createElementNS(svgNS, 'line');
-            line.setAttribute('stroke', '#FFD700');
-            line.setAttribute('stroke-width', '0.4');
-            line.setAttribute('stroke-opacity', '0.9');
-            g.appendChild(line);
-            lines.push(line);
-        }
-        scene.appendChild(g);
-        polyElements.push(poly);
-        lineElements.push(lines);
-    }
+    // Настройка четкости на Retina/4K экранах
+    const dpr = window.devicePixelRatio || 1;
+    const size = canvas.width; // Берем из HTML (240 или 180)
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    ctx.scale(dpr, dpr);
+    ctx.translate(size / 2, size / 2); // Центрируем
 
+    // Цвета
+    const colors = ['#FF4136', '#0074D9', '#2ECC40', '#FFDC00', '#B10DC9'];
+    const svgScale = 55; 
     let time = (Date.now() / 1000) * 0.3; 
-    const svgScale = 40;
 
     function rotateXYZ(p, t) {
         const ax = t * 0.70, ay = t * 1.00, az = t * 0.45;
@@ -83,6 +72,8 @@ async function initEmblem() {
 
     function animate() {
         time += 0.01;
+        ctx.clearRect(-size/2, -size/2, size, size);
+        
         const rotVerts = vertices.map(v => rotateXYZ(v, time));
         
         let renderData = [];
@@ -90,38 +81,38 @@ async function initEmblem() {
             const p = polygons[i];
             let zSum = 0;
             for (let idx of p.verts) zSum += rotVerts[idx][2];
-            renderData.push({ polyIdx: i, z: zSum / p.verts.length, id: i });
+            renderData.push({ polyIdx: i, z: zSum / p.verts.length });
         }
 
-        renderData.sort((a, b) => {
-            if (Math.abs(a.z - b.z) < 0.001) return a.id - b.id;
-            return a.z - b.z;
-        });
+        renderData.sort((a, b) => a.z - b.z);
 
         for (let i = 0; i < renderData.length; i++) {
             const r = renderData[i];
             const p = polygons[r.polyIdx];
-            const g = polyElements[r.polyIdx].parentNode;
-            scene.appendChild(g); 
+            const color = colors[p.colorIdx] || '#fff';
             
-            const polyEl = polyElements[r.polyIdx];
-            let ptsStr = "";
-            for (let idx of p.verts) {
-                ptsStr += `${(rotVerts[idx][0]*svgScale).toFixed(2)},${(rotVerts[idx][1]*svgScale).toFixed(2)} `;
+            ctx.beginPath();
+            for (let j=0; j<p.verts.length; j++) {
+                const v = rotVerts[p.verts[j]];
+                if (j === 0) ctx.moveTo(v[0]*svgScale, v[1]*svgScale);
+                else ctx.lineTo(v[0]*svgScale, v[1]*svgScale);
             }
-            polyEl.setAttribute('points', ptsStr.trim());
-            polyEl.setAttribute('class', `c${p.colorIdx}`);
-            polyEl.style.fillOpacity = (0.35 + ((r.z + 2) / 4) * 0.5).toFixed(2);
+            ctx.closePath();
+            ctx.fillStyle = color;
+            ctx.globalAlpha = (0.35 + ((r.z + 2) / 4) * 0.5);
+            ctx.fill();
             
-            const lines = lineElements[r.polyIdx];
-            for (let j=0; j<lines.length; j++) {
+            ctx.globalAlpha = 0.9;
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 0.4;
+            ctx.beginPath();
+            for (let j=0; j<p.visibleEdges.length; j++) {
                 const v1 = rotVerts[p.visibleEdges[j][0]];
                 const v2 = rotVerts[p.visibleEdges[j][1]];
-                lines[j].setAttribute('x1', (v1[0]*svgScale).toFixed(2));
-                lines[j].setAttribute('y1', (v1[1]*svgScale).toFixed(2));
-                lines[j].setAttribute('x2', (v2[0]*svgScale).toFixed(2));
-                lines[j].setAttribute('y2', (v2[1]*svgScale).toFixed(2));
+                ctx.moveTo(v1[0]*svgScale, v1[1]*svgScale);
+                ctx.lineTo(v2[0]*svgScale, v2[1]*svgScale);
             }
+            ctx.stroke();
         }
         requestAnimationFrame(animate);
     }

@@ -1,0 +1,63 @@
+/* ===== USC 2222 · hist.css =====
+ * Стили страницы Историй.
+ * Иерархия: hero (эмблема + заголовок) → panel.hist-story (тело рассказа) → footer
+ */
+
+.hist-story {
+  padding: 1.5rem 2rem;
+  max-width: 720px;          /* у́же чем контентная колонка — для удобства чтения */
+  margin: 1rem auto;
+}
+
+.hist-story-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.hist-story-header h2 {
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: .3rem;
+  letter-spacing: .01em;
+}
+
+.hist-story-subtitle {
+  font-size: .8rem;
+  color: var(--muted);
+  font-style: italic;
+  letter-spacing: .05em;
+}
+
+.hist-story-body {
+  font-size: .9rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.hist-story-body p {
+  margin: 0 0 .25rem 0;         /* FIX v2: расстояние ≈ на пиксель больше межстрочного */
+  text-indent: 1.5em;          /* красная строка */
+}
+
+/* Диалоги (начинаются с «—», «-», «"», «"», «„», «"», ««») — без красной строки */
+.hist-story-body p.dialogue {
+  text-indent: 0;
+  margin-left: 1.5rem;
+}
+
+/* Первый абзац — без красной строки */
+.hist-story-body p:first-child {
+  text-indent: 0;
+}
+
+/* Мобильный */
+@media (max-width: 768px) {
+  .hist-story {
+    padding: 1rem 1rem;
+    margin: .5rem auto;
+  }
+  .hist-story-header h2 { font-size: 1.2rem; }
+  .hist-story-body { font-size: .9rem; line-height: 1.6; }
+  .hist-story-body p { margin-bottom: .2rem; }    /* FIX v2 */
+}

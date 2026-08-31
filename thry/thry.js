@@ -1,22 +1,26 @@
-// thry.js (Замени thry на код папки)
-let stubData = null;
+// thry/thry.js
+// Заглушка Диамата. Загружает thry.json и подставляет тексты.
+// При смене языка — пере-рендер.
 
-async function loadData() {
+let thryData = null;
+
+async function loadThryData() {
   try {
-    const response = await fetch('thry.json'); // Замени thry.json
-    stubData = await response.json();
+    const response = await fetch('thry.json');
+    thryData = await response.json();
   } catch (e) {
-    console.error('Ошибка загрузки данных:', e);
+    console.error('Ошибка загрузки thry.json:', e);
   }
 }
 
 function getText(id, lang) {
-  if (!stubData) return '';
-  const item = stubData.find(x => x.id === id);
-  return item ? (item[lang] || item.ru) : '';
+  if (!thryData) return '';
+  const item = thryData.find(x => x.id === id);
+  return item ? (item[lang] || item.ru || '') : '';
 }
 
-function renderStub(lang) {
+function renderThry(lang) {
+  if (!thryData) return;
   const title = getText('title', lang);
   document.title = `ССГ 2222 — ${title}`;
   document.getElementById('tr-title').textContent = title;
@@ -25,11 +29,11 @@ function renderStub(lang) {
 }
 
 window.addEventListener('langChanged', (e) => {
-  renderStub(e.detail);
+  renderThry(e.detail);
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
-  await loadData();
+  await loadThryData();
   const lang = document.documentElement.dataset.lang || 'ru';
-  renderStub(lang);
+  renderThry(lang);
 });

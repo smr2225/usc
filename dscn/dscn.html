@@ -2,9 +2,14 @@
 <html lang="ru" data-lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="google" content="notranslate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ССГ 2222 — Заглушка</title>
+  <title>ССГ 2222 — Обсуждения</title>
   <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="../embl.css">
+  <link rel="stylesheet" href="../mble.css">
+  <link rel="stylesheet" href="../svts/svts.css">
+  <link rel="stylesheet" href="dscn.css">
   <script>
     try {
       var savedLang = localStorage.getItem('usc-lang') || 'ru';
@@ -15,23 +20,37 @@
 </head>
 <body class="landing" data-inject="chrome" data-base="../">
 
+  <div id="usc-bg"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="site-menu" id="main-menu"></nav>
+      <nav class="lang-switch" id="lang-switch"></nav>
+      <button id="usc-theme-toggle">◐</button>
+    </div>
+  </header>
+
   <section class="hero">
     <div class="hero-emblem">
-      <svg id="svgCanvas" xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" width="100" height="100">
-          <defs><style>.c0 { fill: #FF4136; } .c1 { fill: #0074D9; } .c2 { fill: #2ECC40; } .c3 { fill: #FFDC00; } .c4 { fill: #B10DC9; }</style></defs>
-          <g id="scene"></g>
-      </svg>
+      <canvas id="svgCanvas" width="190" height="190"></canvas>
     </div>
     <h1 id="tr-title"></h1>
-    <p class="hero-epigraph"></p>
+    <p class="hero-epigraph" id="tr-subtitle"></p>
   </section>
 
-  <section class="panel">
-    <h2 id="tr-subtitle"></h2>
+  <section class="panel dscn-stub">
     <p id="tr-text"></p>
   </section>
 
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span id="tr-footer"></span>
+      <a href="https://t.me/s_mars_r" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </footer>
+
   <script src="../js/boot.js"></script>
-  <script src="dscn.js"></script> <!-- Замени thry на код папки -->
+  <script src="dscn.js"></script>
 </body>
 </html>

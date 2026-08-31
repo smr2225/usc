@@ -1,0 +1,9 @@
+/* ===== USC 2222 · embl.css ===== */
+.gw-emblem, .hero-emblem { position: absolute; left: 50%; transform: translateX(-50%); z-index: 10; pointer-events: none; top: 0; }
+.gw-emblem { width: 240px; height: 240px; }
+.hero-emblem { width: 180px; height: 180px; }
+.gw-emblem canvas, .hero-emblem canvas { width: 100% !important; height: 100% !important; display: block; }
+
+/* Отступ текста: ровно высота эмблемы */
+.gw-wrap:has(.gw-emblem) { padding-top: 240px; } 
+.hero:has(.hero-emblem) { padding-top: 180px; } 

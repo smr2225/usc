@@ -1,0 +1,10 @@
+/* ===== USC 2222 · dscn.css =====
+ * Заглушка Обсуждений. Когда появится реальный контент — стили тут.
+ */
+
+.dscn-stub {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--muted);
+  font-style: italic;
+}

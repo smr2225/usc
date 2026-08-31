@@ -1,0 +1,49 @@
+/* ===== USC 2222 · glsr.css  (v3) =====
+ * Глоссарий: термины, сокращения и определения.
+ *
+ * FIX v11:
+ *  - Убран white-space: nowrap из .glsr-term (баг: текст уходил за край)
+ *  - Убраны ВСЕ декоративные border-bottom (общее требование: никаких линий)
+ */
+
+.glsr-intro-panel {
+  text-align: center;
+  padding: .5rem 1rem;
+  font-size: .8rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.glsr-content {
+  padding: 1rem 1.5rem 2rem;
+}
+
+.glsr-section-title {
+  font-size: 1rem;
+  color: var(--accent);
+  margin: 1.5rem 0 .6rem;
+  letter-spacing: .03em;
+}
+.glsr-section-title:first-child { margin-top: 0; }
+
+.glsr-entry {
+  margin: .4rem 0;
+  padding: .2rem 0;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.glsr-term {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.glsr-def {
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .glsr-content { padding: .5rem 1rem 1.5rem; }
+  .glsr-section-title { font-size: .95rem; margin: 1rem 0 .4rem; }
+  .glsr-entry { font-size: .85rem; padding: .15rem 0; }
+}

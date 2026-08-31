@@ -1,0 +1,14 @@
+/* ===== USC 2222 · svts.css ===== */
+
+.data-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.3rem; margin-top:.3rem; }
+.data-item { border:1px solid var(--border); padding:.3rem .4rem; border-radius:4px; background:var(--panel); }
+.data-label { font-size:.7rem; color:var(--muted); display:block; margin-bottom:.1rem; }
+.data-value { font-family:var(--mono); font-size:.8rem; color:var(--text); }
+.entry-full { grid-column: 1 / -1; text-align:center; font-size:.9rem; }
+
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.4rem; margin-top:.3rem; }
+.card { border:1px solid var(--border); border-radius:4px; padding:.4rem; color:var(--text); font-size:.75rem; }
+.card.soon { opacity:.45; pointer-events:none; }
+.card small { display:block; color:var(--muted); margin-top:.1rem; font-size:.65rem; }
+
+/* FIX svts: подвал виден (фон и Telegram-стиль — в main.css). */

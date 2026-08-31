@@ -1,5 +1,5 @@
 [
-  { "id": "title", "ru": "Диамат", "en": "Diamat", "es": "Diamat", "fr": "Diamat" },
+  { "id": "title", "ru": "Диамат", "en": "Dialectical Materialism", "es": "Materialismo Dialéctico", "fr": "Matérialisme Dialectique" },
   { "id": "subtitle", "ru": "Раздел готовится", "en": "Section under preparation", "es": "Sección en preparación", "fr": "Section en préparation" },
   { "id": "text", "ru": "Контент появится в ближайших выпусках.", "en": "Content will appear in upcoming releases.", "es": "El contenido aparecerá en próximas ediciones.", "fr": "Le contenu apparaîtra dans les prochaines éditions." }
 ]

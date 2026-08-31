@@ -2,9 +2,13 @@
 <html lang="ru" data-lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="google" content="notranslate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Марс · 2222</title>
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="gw.css">
+  <link rel="stylesheet" href="embl.css">
+  <link rel="stylesheet" href="mble.css">
   <script>
     try {
       var savedLang = localStorage.getItem('usc-lang') || 'ru';
@@ -14,12 +18,18 @@
   </script>
 </head>
 <body class="gateway" data-inject="chrome" data-base="">
+
+  <!-- СТАТИЧНАЯ ШАПКА (Только кнопка темы) -->
+  <header class="site-header header-gateway">
+    <div class="header-inner">
+      <button id="usc-theme-toggle">◐</button>
+    </div>
+  </header>
+
+  <!-- КОНТЕНТ ГЕЙТВЕЯ -->
   <div class="gw-wrap">
     <div class="gw-emblem">
-      <svg id="svgCanvas" xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" width="120" height="120">
-          <defs><style>.c0 { fill: #FF4136; } .c1 { fill: #0074D9; } .c2 { fill: #2ECC40; } .c3 { fill: #FFDC00; } .c4 { fill: #B10DC9; }</style></defs>
-          <g id="scene"></g>
-      </svg>
+      <canvas id="svgCanvas" width="240" height="240"></canvas>
     </div>
     <div class="gw-title">Марс · 2222</div>
     <nav class="gw-langs">
@@ -29,6 +39,15 @@
       <a class="gw-quote" href="svts/svts.html" data-lang="ru"><span class="gw-text"></span><span class="gw-arrow">→</span></a>
     </nav>
   </div>
+
+  <!-- СТАТИЧНЫЙ ПОДВАЛ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span id="tr-footer"></span>
+      <a href="https://t.me/s_mars_r" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </footer>
+
   <script src="js/boot.js"></script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+/* ===== USC 2222 · thry.css =====
+ * Заглушка Диамата. Когда появится реальный контент — стили тут.
+ */
+
+.thry-stub {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--muted);
+  font-style: italic;
+}

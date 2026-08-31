@@ -2,9 +2,13 @@
 <html lang="ru" data-lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="google" content="notranslate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ССГ 2222 — Панель</title>
   <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="../embl.css">
+  <link rel="stylesheet" href="../mble.css">
+  <link rel="stylesheet" href="svts.css">
   <script>
     try {
       var savedLang = localStorage.getItem('usc-lang') || 'ru';
@@ -12,23 +16,28 @@
       document.documentElement.dataset.lang = savedLang;
     } catch(e) {}
   </script>
-  <style>
-    .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .data-item { border: 1px solid var(--border); padding: 1rem; border-radius: 6px; background: var(--panel); }
-    .data-label { font-size: 0.85rem; color: var(--muted); display: block; margin-bottom: 0.5rem; }
-    .data-value { font-family: var(--mono); font-size: 1rem; color: var(--text); }
-    /* Время входа на всю ширину */
-    .entry-full { grid-column: 1 / -1; text-align: center; font-size: 1.1rem; }
-  </style>
 </head>
 <body class="landing" data-inject="chrome" data-base="../">
 
+  <!-- FIX: фон-фото (если ещё не инжектился main.js) -->
+  <div id="usc-bg"></div>
+
+  <!-- СТАТИЧНАЯ ШАПКА -->
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="site-menu" id="main-menu"><!-- JS вставит сюда меню --></nav>
+      <nav class="lang-switch" id="lang-switch"><!-- JS вставит сюда языки --></nav>
+      <button id="usc-theme-toggle">◐</button>
+    </div>
+  </header>
+
+  <!-- FIX: .menu-overlay больше не нужен (mble.css его скрывает), можно удалить -->
+
+  <!-- КОНТЕНТ -->
   <section class="hero">
     <div class="hero-emblem">
-      <svg id="svgCanvas" xmlns="http://www.w3.org/2000/svg" viewBox="-100 -100 200 200" width="100" height="100">
-          <defs><style>.c0 { fill: #FF4136; } .c1 { fill: #0074D9; } .c2 { fill: #2ECC40; } .c3 { fill: #FFDC00; } .c4 { fill: #B10DC9; }</style></defs>
-          <g id="scene"></g>
-      </svg>
+      <canvas id="svgCanvas" width="190" height="190"></canvas>
     </div>
     <h1 id="tr-title"></h1>
     <p class="hero-epigraph"></p>
@@ -84,6 +93,14 @@
     <h2 id="tr-roots_title"></h2>
     <p id="tr-roots_text"></p>
   </section>
+
+  <!-- СТАТИЧНЫЙ ПОДВАЛ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span id="tr-footer"></span>
+      <a href="https://t.me/s_mars_r" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </footer>
 
   <script src="../js/boot.js"></script>
   <script src="svts.js"></script>

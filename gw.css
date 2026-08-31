@@ -1,0 +1,91 @@
+/* ===== USC 2222 · gw.css  (полная исправленная версия) =====
+ *
+ * ЧТО ИЗМЕНИЛОСЬ vs оригинала:
+ *  1. .gw-quote:hover: текст не теряется.
+ *     Было: background rgba(193,68,14,.15) на фоне фото — слишком тёмный.
+ *     Теперь: фон поднимается до var(--panel) с opacity 1 (плотный),
+ *     текст → var(--accent), рамка → var(--accent).
+ *     Чёткий визуальный feedback, текст читается на любом фоне.
+ *  2. .gw-quote теперь всегда с transparent border 1px (чтобы не было
+ *     скачка при hover).
+ *  3. .gw-title увеличен: 1.1rem → 1.3rem (временно, до лого в углу).
+ */
+
+.gateway { display:flex; flex-direction:column; width:100%; min-height:100vh; padding-top:0; }
+.gw-wrap {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: .3rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.header-gateway {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  border: none;
+  background: transparent;
+  z-index: 100;
+  padding: 5px 0;
+}
+.header-gateway .header-inner { display: flex; justify-content: flex-end; }
+#usc-theme-toggle {
+  background: none; border: none;
+  border-radius: 4px;
+  color: var(--text);
+  cursor: pointer;
+  padding: .1em .4em;
+  font-size: .9rem;
+  line-height: 1.2;
+}
+#usc-theme-toggle:hover { color: var(--accent); }
+
+.gw-langs {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* FIX: цитата всегда с transparent border — не будет скачка при hover */
+.gw-quote {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem .8rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: var(--text);
+  transition: background .2s, color .2s, border-color .2s;
+  font-size: .9rem;
+  background: var(--panel);
+}
+
+/* FIX: hover поднимает фон до плотного panel и подсвечивает акцентом */
+.gw-quote:hover {
+  background: var(--panel);
+  background-color: rgba(193, 68, 14, .22);   /* плотнее, читается поверх фото */
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* FIX: текст цитаты наследует hover-цвет, не теряется */
+.gw-quote:hover .gw-text { color: var(--accent); }
+.gw-quote:hover .gw-arrow { color: var(--accent); }
+.gw-text { color: inherit; transition: color .2s; }
+
+.gw-arrow { color: var(--accent); font-size: .9rem; transition: color .2s; }
+
+/* FIX: «Марс · 2222» — временно побольше. Позже заменишь на <img> лого в углу. */
+.gw-title {
+  font-size: 1.3rem;
+  letter-spacing: .02em;
+  color: var(--muted);
+  margin: .2rem 0 1.5rem;
+}
