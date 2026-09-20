@@ -10,7 +10,7 @@
       { "code": "glsr", "ru": "Глоссарий", "en": "Glossary", "fr": "Glossaire", "es": "Glosario" }
     ]},
     { "code": "cnst", "ru": "Конституция", "en": "Constitution", "fr": "Constitution", "es": "Constitución" },
-    { "code": "thry", "ru": "Диамат", "en": "Diamat", "fr": "Diamat", "es": "Diamat" },
+    { "code": "thry", "ru": "Диамат", "en": "Philosophy", "fr": "Philosophie", "es": "Filosofía" },
     { "code": "dscn", "ru": "Обсуждения", "en": "Discussions", "fr": "Discussions", "es": "Discusiones" },
     { "code": "hist", "ru": "Истории", "en": "Stories", "fr": "Histoires", "es": "Historias" }
   ],

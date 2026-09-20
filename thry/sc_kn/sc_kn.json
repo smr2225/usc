@@ -1,0 +1,177 @@
+[
+  { 
+    "id": "back", 
+    "ru": "← К Диамат", 
+    "en": "← To Philosophy", 
+    "es": "← A Filosofía", 
+    "fr": "← À Philosophie" 
+  },
+    { 
+    "id": "title", 
+    "ru": "Необходимые критерии научности знания", 
+    "en": "Necessary Criteria for Scientific Knowledge", 
+    "es": "Criterios Necesarios de Cientificidad del Conocimiento", 
+    "fr": "Critères Nécessaires de la Scientificité de la Connaissance" 
+  },
+  { 
+    "id": "subtitle", 
+    "ru": "(Методическое руководство для МНС)", 
+    "en": "(Methodological Guidelines for Junior Researchers)", 
+    "es": "(Guía Metodológica para Investigadores Junior)", 
+    "fr": "(Guide Méthodologique pour les Jeunes Chercheurs)" 
+  },
+  { 
+    "id": "sec_1", 
+    "ru": "I. Онтологический уровень (природа исследуемой реальности)", 
+    "en": "I. Ontological Level (Nature of the Reality Under Study)", 
+    "es": "I. Nivel Ontológico (Naturaleza de la Realidad Investigada)", 
+    "fr": "I. Niveau Ontologique (Nature de la Réalité Étudiée)" 
+  },
+  { 
+    "id": "sc_01", 
+    "ru": "Материальность. Объект исследования имеет материальную основу; причины процессов лежат в самой движущейся материи.", 
+    "en": "Materiality. The object of inquiry has a material basis; the causes of processes lie within matter itself in motion.", 
+    "es": "Materialidad. El objeto de investigación tiene una base material; las causas de los procesos residen en la propia materia en movimiento.", 
+    "fr": "Matérialité. L'objet de recherche a un fondement matériel ; les causes des processus résident dans la matière elle-même en mouvement." 
+  },
+  { 
+    "id": "sc_02", 
+    "ru": "Объективность существования. Предмет и его свойства существуют реально и независимо от сознания или наблюдателя.", 
+    "en": "Objectivity of Existence. The subject matter and its properties exist really and independently of consciousness or the observer.", 
+    "es": "Objetividad de la Existencia. El objeto de estudio y sus propiedades existen realmente e independientemente de la conciencia o del observador.", 
+    "fr": "Objectivité de l'Existence. L'objet et ses propriétés existent réellement et indépendamment de la conscience ou de l'observateur." 
+  },
+  { 
+    "id": "sc_03", 
+    "ru": "Объективная причинность (детерминизм). Все явления имеют естественные материальные причины.", 
+    "en": "Objective Causality (Determinism). All phenomena have natural material causes.", 
+    "es": "Causalidad Objetiva (Determinismo). Todos los fenómenos tienen causas materiales naturales.", 
+    "fr": "Causalité Objective (Déterminisme). Tous les phénomènes ont des causes matérielles naturelles." 
+  },
+  { 
+    "id": "sc_04", 
+    "ru": "Единство явления и сущности. Фиксация не только внешнего факта, но и внутреннего закона, его порождающего.", 
+    "en": "Unity of Phenomenon and Essence. Capturing not only the external fact but also the internal law that generates it.", 
+    "es": "Unidad de Fenómeno y Esencia. Registro no solo del hecho externo, sino también de la ley interna que lo genera.", 
+    "fr": "Unité du Phénomène et de l'Essence. Saisie non seulement du fait externe, mais aussi de la loi interne qui l'engendre." 
+  },
+  { 
+    "id": "sec_2", 
+    "ru": "II. Гносеологический уровень (отношение знания к реальности)", 
+    "en": "II. Epistemological Level (Relation of Knowledge to Reality)", 
+    "es": "II. Nivel Gnoseológico (Relación del Conocimiento con la Realidad)", 
+    "fr": "II. Niveau Gnoséologique (Rapport de la Connaissance à la Réalité)" 
+  },
+  { 
+    "id": "sc_05", 
+    "ru": "Метод. Главный инструмент распредмечивания реальности, задающий старт научному исследованию и определяющий саму науку.", 
+    "en": "Method. The principal instrument for the de-objectification of reality, which initiates scientific inquiry and defines the science itself.", 
+    "es": "Método. El instrumento principal de desobjetivación de la realidad, que da inicio a la investigación científica y define a la propia ciencia.", 
+    "fr": "Méthode. L'instrument principal de désobjectivation de la réalité, qui donne le coup d'envoi à la recherche scientifique et définit la science elle-même." 
+  },
+  { 
+    "id": "sc_06", 
+    "ru": "Область науки. Задание пространства приложения познавательных сил.", 
+    "en": "Domain of Science. The designation of the space to which cognitive powers are applied.", 
+    "es": "Ámbito de la Ciencia. La delimitación del espacio de aplicación de las fuerzas cognoscitivas.", 
+    "fr": "Domaine de la Science. La délimitation de l'espace d'application des forces cognitives." 
+  },
+  { 
+    "id": "sc_07", 
+    "ru": "Предмет науки. Выделение специфического качественного среза реальности (формы движения материи) внутри области.", 
+    "en": "Subject Matter of Science. The isolation of a specific qualitative cross-section of reality (a form of motion of matter) within the domain.", 
+    "es": "Objeto de la Ciencia. La delimitación de un corte cualitativo específico de la realidad (una forma de movimiento de la materia) dentro del ámbito.", 
+    "fr": "Objet de la Science. L'isolement d'une coupe qualitative spécifique de la réalité (une forme de mouvement de la matière) au sein du domaine." 
+  },
+  { 
+    "id": "sc_08", 
+    "ru": "Познаваемость. Мир познаваем; знание есть отражение материальных процессов.", 
+    "en": "Knowability. The world is knowable; knowledge is a reflection of material processes.", 
+    "es": "Cognoscibilidad. El mundo es cognoscible; el conocimiento es un reflejo de los procesos materiales.", 
+    "fr": "Connaissabilité. Le monde est connaissable ; la connaissance est un reflet des processus matériels." 
+  },
+  { 
+    "id": "sc_09", 
+    "ru": "Объективность истины. Содержание знания определяется исключительно природой объекта.", 
+    "en": "Objectivity of Truth. The content of knowledge is determined exclusively by the nature of the object.", 
+    "es": "Objetividad de la Verdad. El contenido del conocimiento está determinado exclusivamente por la naturaleza del objeto.", 
+    "fr": "Objectivité de la Vérité. Le contenu de la connaissance est déterminé exclusivement par la nature de l'objet." 
+  },
+  { 
+    "id": "sc_10", 
+    "ru": "Эссенциальность. Нацеленность на вскрытие внутренней сущности.", 
+    "en": "Essentiality. Orientation toward uncovering the inner essence.", 
+    "es": "Esencialidad. Orientación hacia el desvelamiento de la esencia interna.", 
+    "fr": "Essentialité. Orientation vers la mise au jour de l'essence interne." 
+  },
+  { 
+    "id": "sc_11", 
+    "ru": "Конкретность. Определение жестких материальных границ применимости знания.", 
+    "en": "Concreteness. The determination of strict material limits on the applicability of knowledge.", 
+    "es": "Concreción. La determinación de límites materiales estrictos de la aplicabilidad del conocimiento.", 
+    "fr": "Concrétude. La détermination de limites matérielles strictes de l'applicabilité de la connaissance." 
+  },
+  { 
+    "id": "sc_12", 
+    "ru": "Проверяемость (практика). Подтверждение адекватности знания в общественно-исторической материальной практике.", 
+    "en": "Verifiability (Practice). Confirmation of the adequacy of knowledge in socio-historical material practice.", 
+    "es": "Verificabilidad (Práctica). Confirmación de la adecuación del conocimiento en la práctica material socio-histórica.", 
+    "fr": "Vérifiabilité (Pratique). Confirmation de l'adéquation de la connaissance dans la pratique matérielle socio-historique." 
+  },
+  { 
+    "id": "sec_3", 
+    "ru": "III. Логико-инструментальный уровень (внутренняя структура знания)", 
+    "en": "III. Logical-Instrumental Level (Internal Structure of Knowledge)", 
+    "es": "III. Nivel Lógico-Instrumental (Estructura Interna del Conocimiento)", 
+    "fr": "III. Niveau Logico-Instrumental (Structure Interne de la Connaissance)" 
+  },
+  { 
+    "id": "sc_13", 
+    "ru": "Понятийность. Мышление в строгих категориях, вскрывающих развитие предмета, вместо метафор и представлений.", 
+    "en": "Conceptuality. Thinking in rigorous categories that reveal the development of the subject matter, rather than in metaphors and representations.", 
+    "es": "Conceptualidad. Pensamiento en categorías rigurosas que revelan el desarrollo del objeto, en lugar de metáforas y representaciones.", 
+    "fr": "Conceptualité. Pensée en catégories rigoureuses qui révèlent le développement de l'objet, plutôt qu'en métaphores et représentations." 
+  },
+  { 
+    "id": "sc_14", 
+    "ru": "Исходное простое. Построение теории от наипростейших единиц (которых в дисциплине может быть несколько), неразложимых далее в рамках данного метода.", 
+    "en": "Initial Simple Unit. Construction of the theory from the simplest units (of which a discipline may have several), not further decomposable within the given method.", 
+    "es": "Simple Inicial. Construcción de la teoría a partir de las unidades más simples (que en una disciplina pueden ser varias), no descomponibles ulteriormente dentro de dicho método.", 
+    "fr": "Simple Initial. Construction de la théorie à partir des unités les plus simples (dont une discipline peut comporter plusieurs), non décomposables davantage dans le cadre de cette méthode." 
+  },
+  { 
+    "id": "sc_15", 
+    "ru": "Развертываемость. Способность теории логически выводить все многообразие следствий из исходного базиса.", 
+    "en": "Unfolding (Derivability). The theory's capacity to logically derive the entire diversity of consequences from the initial basis.", 
+    "es": "Desplegabilidad. La capacidad de la teoría de deducir lógicamente toda la diversidad de consecuencias a partir de la base inicial.", 
+    "fr": "Déploiement (Déductibilité). La capacité de la théorie à déduire logiquement toute la diversité des conséquences à partir de la base initiale." 
+  },
+  { 
+    "id": "sc_16", 
+    "ru": "Необходимость. Жесткая детерминация элементов; изъятие одного звена разрушает конструкцию.", 
+    "en": "Necessity. Strict determination of elements; removing a single link destroys the construction.", 
+    "es": "Necesidad. Determinación estricta de los elementos; la eliminación de un solo eslabón destruye la construcción.", 
+    "fr": "Nécessité. Détermination stricte des éléments ; le retrait d'un seul maillon détruit la construction." 
+  },
+  { 
+    "id": "sc_17", 
+    "ru": "Логичность. Строгая последовательность суждений без разрывов и скачков.", 
+    "en": "Logical Consistency. A strict sequence of judgments without gaps or leaps.", 
+    "es": "Lógicidad. Secuencia estricta de juicios sin rupturas ni saltos.", 
+    "fr": "Cohérence Logique. Enchaînement rigoureux de jugements sans ruptures ni sauts." 
+  },
+  { 
+    "id": "sc_18", 
+    "ru": "Внутренняя системность (стремление к непротиворечивости). Организация элементов в единую архитектуру, где возникающие противоречия разрешаются через развитие теории.", 
+    "en": "Internal Systematicity (Striving for Consistency). The organization of elements into a unified architecture, in which arising contradictions are resolved through the development of the theory.", 
+    "es": "Sistematicidad Interna (Tendencia a la No Contradicción). La organización de los elementos en una arquitectura unificada, donde las contradicciones que surgen se resuelven mediante el desarrollo de la teoría.", 
+    "fr": "Systématicité Interne (Recherche de la Cohérence). L'organisation des éléments en une architecture unifiée, où les contradictions apparues sont résolues par le développement de la théorie." 
+  },
+  { 
+    "id": "sc_19", 
+    "ru": "Внешняя системность (единство наук). Интеграция теории в общий массив объективного знания.", 
+    "en": "External Systematicity (Unity of the Sciences). The integration of the theory into the overall body of objective knowledge.", 
+    "es": "Sistematicidad Externa (Unidad de las Ciencias). La integración de la teoría en el conjunto general del conocimiento objetivo.", 
+    "fr": "Systématicité Externe (Unité des Sciences). L'intégration de la théorie dans l'ensemble général de la connaissance objective." 
+  }
+]

@@ -1,5 +1,5 @@
-[
-  { "id": "title", "ru": "Диамат", "en": "Dialectical Materialism", "es": "Materialismo Dialéctico", "fr": "Matérialisme Dialectique" },
-  { "id": "subtitle", "ru": "Раздел готовится", "en": "Section under preparation", "es": "Sección en preparación", "fr": "Section en préparation" },
-  { "id": "text", "ru": "Контент появится в ближайших выпусках.", "en": "Content will appear in upcoming releases.", "es": "El contenido aparecerá en próximas ediciones.", "fr": "Le contenu apparaîtra dans les prochaines éditions." }
+[  
+  { "id": "title", "ru": "Диамат", "en": "Philosophy", "es": "Filosofía", "fr": "Philosophie" },
+  { "id": "subtitle", "ru": "Очерки и методология", "en": "Essays and Methodology", "es": "Ensayos y Metodología", "fr": "Essais et Méthodologie" },
+  { "id": "link_sc_kn", "ru": "Необходимые критерии научности знания", "en": "Necessary Criteria for Scientific Knowledge", "es": "Criterios Necesarios de Cientificidad del Conocimiento", "fr": "Critères Nécessaires de la Scientificité de la Connaissance" }
 ]

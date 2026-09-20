@@ -1,7 +1,4 @@
 // thry/thry.js
-// Заглушка Диамата. Загружает thry.json и подставляет тексты.
-// При смене языка — пере-рендер.
-
 let thryData = null;
 
 async function loadThryData() {
@@ -25,7 +22,16 @@ function renderThry(lang) {
   document.title = `ССГ 2222 — ${title}`;
   document.getElementById('tr-title').textContent = title;
   document.getElementById('tr-subtitle').textContent = getText('subtitle', lang);
-  document.getElementById('tr-text').textContent = getText('text', lang);
+
+  const linksBox = document.getElementById('tr-links');
+  if (linksBox) {
+    const links = [
+      { url: 'sc_kn/sc_kn.html', id: 'link_sc_kn' }
+    ];
+    linksBox.innerHTML = links.map(l => 
+      `<li><a href="${l.url}" class="thry-link">${getText(l.id, lang)}</a></li>`
+    ).join('');
+  }
 }
 
 window.addEventListener('langChanged', (e) => {
