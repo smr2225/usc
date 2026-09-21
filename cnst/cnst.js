@@ -16,89 +16,92 @@ function getText(id, lang) {
   return item ? (item[lang] || item.ru) : '';
 }
 
-// Удаление дублирующихся заголовков/номеров в начале текста
+// Чистим дублирующиеся номера в начале текста
 function cleanText(text) {
-    if (!text) return '';
-    let cleaned = text.replace(/^Статья\s*\d+\.\s*/i, '');
-    cleaned = cleaned.replace(/^\d+\.\d+\.\s*/, '');
-    cleaned = cleaned.replace(/^Преамбула\.\s*/i, '');
-    return cleaned.trim();
+  if (!text) return '';
+  let cleaned = text.replace(/^Статья\s*\d+\.\s*/i, '');
+  cleaned = cleaned.replace(/^\d+\.\d+\.\d+\.\s*/, ''); // Для 18.7.1.
+  cleaned = cleaned.replace(/^\d+\.\d+\.\s*/, '');     // Для 18.7.
+  cleaned = cleaned.replace(/^Преамбула\.\s*/i, '');
+  return cleaned.trim();
 }
 
 function renderConstitution(lang) {
-    if (!cnstData) return;
-    
-    const titleText = getText('title', lang);
-    // Добавили точку после слова Конституция
-    const titlePrefix = { ru: "Конституция. ", en: "Constitution. ", es: "Constitución. ", fr: "Constitution. " };
-    const fullTitle = (titlePrefix[lang] || titlePrefix.ru) + titleText;
-    
-    // Меняем заголовок вкладки браузера
-    document.title = `ССГ 2222 — ${fullTitle}`;
-    document.getElementById('tr-title').textContent = fullTitle;
+  if (!cnstData) return;
 
-    // Заголовок полной редакции
-    const fullTitleLabel = { ru: "Полная редакция", en: "Full Edition", es: "Edición Completa", fr: "Édition Complète" };
-    document.getElementById('tr-full-title').textContent = fullTitleLabel[lang] || fullTitleLabel.ru;
+  const titleText = getText('title', lang);
+  const titlePrefix = { ru: "Конституция. ", en: "Constitution. ", es: "Constitución. ", fr: "Constitution. " };
+  const fullTitle = (titlePrefix[lang] || titlePrefix.ru) + titleText;
 
-    const shortContent = document.getElementById('cnst-short-content');
-    const fullContent = document.getElementById('cnst-full-content');
-    shortContent.innerHTML = '';
-    fullContent.innerHTML = '';
+  document.title = `ССГ 2222 — ${fullTitle}`;
+  document.getElementById('tr-title').textContent = fullTitle;
 
-    const preambleLabel = { ru: "Преамбула", en: "Preamble", es: "Preámbulo", fr: "Préambule" };
-    const articleLabel = { ru: "Статья", en: "Article", es: "Artículo", fr: "Article" };
+  const fullTitleLabel = { ru: "Полная редакция", en: "Full Edition", es: "Edición Completa", fr: "Édition Complète" };
+  document.getElementById('tr-full-title').textContent = fullTitleLabel[lang] || fullTitleLabel.ru;
 
-    // 1. Рендер Краткой редакции (только статьи, формат h3, обернуты в ссылки)
-    cnstData.forEach(item => {
-        if (item.id === 'title') return;
-        const text = cleanText(item[lang] || item.ru);
+  const shortContent = document.getElementById('cnst-short-content');
+  const fullContent = document.getElementById('cnst-full-content');
+  shortContent.innerHTML = '';
+  fullContent.innerHTML = '';
 
-        if (item.id === 'preamble') {
-            shortContent.innerHTML += `<div class="cnst-block"><h3><a href="#preamble">${preambleLabel[lang] || preambleLabel.ru}. ${text}</a></h3></div>`;
-        } else if (item.id.match(/^art\d+$/)) {
-            const num = item.id.match(/^art(\d+)$/)[1];
-            const labelText = `${articleLabel[lang] || articleLabel.ru} ${num}.`;
-            shortContent.innerHTML += `<div class="cnst-block"><h3><a href="#${item.id}">${labelText} ${text}</a></h3></div>`;
-        }
-    });
+  const preambleLabel = { ru: "Преамбула", en: "Preamble", es: "Preámbulo", fr: "Préambule" };
+  const articleLabel = { ru: "Статья", en: "Article", es: "Artículo", fr: "Article" };
 
-    // 2. Рендер Полной редакции (статьи с id + пункты под ними)
-    cnstData.forEach(item => {
-        if (item.id === 'title') return;
-        const text = cleanText(item[lang] || item.ru);
+  let currentBlock = null;
 
-        const artMatch = item.id.match(/^art(\d+)$/);
-        const pointMatch = item.id.match(/^art(\d+)_(\d+)$/);
+  cnstData.forEach(item => {
+    if (item.id === 'title') return;
+    const text = cleanText(item[lang] || item.ru);
 
-        if (item.id === 'preamble') {
-            fullContent.innerHTML += `<div class="cnst-block"><h3 id="preamble">${preambleLabel[lang] || preambleLabel.ru}. ${text}</h3></div>`;
-        } else if (artMatch) {
-            const num = artMatch[1];
-            const labelText = `${articleLabel[lang] || articleLabel.ru} ${num}.`;
-            fullContent.innerHTML += `<div class="cnst-block"><h3 id="${item.id}">${labelText} ${text}</h3></div>`;
-        } else if (pointMatch) {
-            const artNum = pointMatch[1];
-            const pointNum = pointMatch[2];
-            const numStr = `${artNum}.${pointNum}.`;
-            
-            const lastBlock = fullContent.lastChild;
-            if (lastBlock && lastBlock.classList.contains('cnst-block')) {
-                const p = document.createElement('div');
-                p.className = 'cnst-point';
-                p.innerHTML = `<span class="point-num">${numStr}</span><span class="point-text">${text}</span>`;
-                lastBlock.appendChild(p);
-            }
-        }
-    });
+    // Паттерны для определения уровня
+    const artMatch = item.id.match(/^art(\d+)$/);
+    const pointMatch = item.id.match(/^art(\d+)_(\d+)$/);
+    const subPointMatch = item.id.match(/^art(\d+)_(\d+)_(\d+)$/);
+
+    if (item.id === 'preamble') {
+      // Краткая редакция
+      shortContent.innerHTML += `<div class="cnst-block"><h3><a href="#preamble">${preambleLabel[lang] || preambleLabel.ru}. ${text}</a></h3></div>`;
+      // Полная редакция
+      currentBlock = document.createElement('div');
+      currentBlock.className = 'cnst-block';
+      currentBlock.innerHTML = `<h3 id="preamble">${preambleLabel[lang] || preambleLabel.ru}. ${text}</h3>`;
+      fullContent.appendChild(currentBlock);
+
+    } else if (artMatch) {
+      const num = artMatch[1];
+      const labelText = `${articleLabel[lang] || articleLabel.ru} ${num}.`;
+      
+      // Краткая редакция
+      shortContent.innerHTML += `<div class="cnst-block"><h3><a href="#${item.id}">${labelText} ${text}</a></h3></div>`;
+      // Полная редакция
+      currentBlock = document.createElement('div');
+      currentBlock.className = 'cnst-block';
+      currentBlock.innerHTML = `<h3 id="${item.id}">${labelText} ${text}</h3>`;
+      fullContent.appendChild(currentBlock);
+
+    } else if (pointMatch) {
+      const numStr = `${pointMatch[1]}.${pointMatch[2]}.`;
+      const p = document.createElement('div');
+      p.className = 'cnst-point';
+      p.innerHTML = `<span class="point-num">${numStr}</span><span class="point-text">${text}</span>`;
+      if (currentBlock) currentBlock.appendChild(p);
+
+    } else if (subPointMatch) {
+      const numStr = `${subPointMatch[1]}.${subPointMatch[2]}.${subPointMatch[3]}.`;
+      const p = document.createElement('div');
+      p.className = 'cnst-subpoint';
+      p.innerHTML = `<span class="point-num">${numStr}</span><span class="point-text">${text}</span>`;
+      if (currentBlock) currentBlock.appendChild(p);
+    }
+  });
 }
 
 window.addEventListener('langChanged', (e) => {
-    renderConstitution(e.detail);
+  renderConstitution(e.detail);
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadCnstData();
-    const lang = document.documentElement.dataset.lang || 'ru';
-    renderConstitution(lang);
+  await loadCnstData();
+  const lang = document.documentElement.dataset.lang || 'ru';
+  renderConstitution(lang);
 });

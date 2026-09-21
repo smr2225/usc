@@ -49,3 +49,52 @@
   flex: 1;
   white-space: pre-wrap;
 }
+/* Отступы для пунктов и подпунктов */
+.cnst-point {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cnst-subpoint {
+  margin-left: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Текст в светлой теме делаем почти черным */
+html[data-theme="light"] .cnst-container,
+html[data-theme="light"] .cnst-point,
+html[data-theme="light"] .cnst-subpoint {
+  color: #1a120b;
+}
+
+
+/* ===== USC 2222 · cnst.css ===== */
+
+/* Заголовок "Полная редакция" делаем как H1 */
+.cnst-full-title {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin: 2rem 0 1rem 0 !important;
+  color: var(--text) !important;
+}
+
+/* Отступы для пунктов и подпунктов */
+.cnst-point {
+  margin-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cnst-subpoint {
+  margin-left: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Жестко делаем текст темным в светлой теме во всех элементах */
+html[data-theme="light"] .cnst-container,
+html[data-theme="light"] .cnst-container .point-text,
+html[data-theme="light"] .cnst-container .cnst-block,
+html[data-theme="light"] .cnst-container h3,
+html[data-theme="light"] .cnst-container a {
+  color: #1a120b !important;
+}
