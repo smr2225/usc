@@ -36,10 +36,10 @@
   },
   { 
     "id": "sc_02", 
-    "ru": "Объективность существования. Предмет и его свойства существуют реально и независимо от сознания или наблюдателя.", 
-    "en": "Objectivity of Existence. The subject matter and its properties exist really and independently of consciousness or the observer.", 
-    "es": "Objetividad de la Existencia. El objeto de estudio y sus propiedades existen realmente e independientemente de la conciencia o del observador.", 
-    "fr": "Objectivité de l'Existence. L'objet et ses propriétés existent réellement et indépendamment de la conscience ou de l'observateur." 
+    "ru": "Объективность существования. Явление и его свойства существуют реально и независимо от сознания или наблюдателя.", 
+    "en": "Objectivity of Existence. The phenomenon matter and its properties exist really and independently of consciousness or the observer.", 
+    "es": "Objetividad de la Existencia. El fenómeno de estudio y sus propiedades existen realmente e independientemente de la conciencia o del observador.", 
+    "fr": "Objectivité de l'Existence. Le phénomène et ses propriétés existent réellement et indépendamment de la conscience ou de l'observateur." 
   },
   { 
     "id": "sc_03", 
@@ -173,5 +173,19 @@
     "en": "External Systematicity (Unity of the Sciences). The integration of the theory into the overall body of objective knowledge.", 
     "es": "Sistematicidad Externa (Unidad de las Ciencias). La integración de la teoría en el conjunto general del conocimiento objetivo.", 
     "fr": "Systématicité Externe (Unité des Sciences). L'intégration de la théorie dans l'ensemble général de la connaissance objective." 
+  },  
+  {
+    "id": "sec_4",
+    "ru": "IV. Культурно-институциональный уровень (Объективация знания)",
+    "en": "IV. Cultural-Institutional Level (Objectification of Knowledge)",
+    "es": "IV. Nivel Cultural-Institucional (Objetivación del Conocimiento)",
+    "fr": "IV. Niveau Culturel-Institutionnel (Objectivation de la Connaissance)"
+  },
+  {
+    "id": "sc_20",
+    "ru": "Культурное отчуждение. Выход знания за пределы индивидуального сознания через фиксацию на общественно доступном материальном носителе (материальная трансляция), обеспечивающий независимую от автора трансляцию, верификацию и воспроизводство знания обществом.",
+    "en": "Cultural Alienation. The transcendence of knowledge beyond the limits of individual consciousness through its fixation on a publicly accessible material carrier (material transmission), ensuring the transmission, verification, and reproduction of knowledge by society independently of the author.",
+    "es": "Enajenación cultural. La trascendencia del conocimiento más allá de los límites de la conciencia individual a través de su fijación en un soporte material de acceso público (transmisión material), que garantiza la transmisión, verificación y reproducción del conocimiento por la sociedad independientemente del autor.",
+    "fr": "Aliénation culturelle. Le dépassement du savoir au-delà des limites de la conscience individuelle par sa fixation sur un support matériel accessible au public (transmission matérielle), assurant la transmission, la vérification et la reproduction du savoir par la société indépendamment de l'auteur."
   }
 ]

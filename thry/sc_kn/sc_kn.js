@@ -41,7 +41,11 @@ function renderSc(lang) {
     if (item.id.startsWith('sec_')) {
       html += `<h2 class="sc-sec-title">${txt}</h2>`;
     } else if (item.id.startsWith('sc_')) {
-      html += `<p class="sc-item">${txt}</p>`;
+      // Извлекаем номер из ID (например, sc_01 -> 1)
+      const numMatch = item.id.match(/^sc_0*(\d+)$/);
+      const num = numMatch ? numMatch[1] : '';
+      // Оборачиваем в flex-контейнер для ровного выравнивания текста
+      html += `<div class="sc-item"><span class="sc-num">${num}.</span><span class="sc-text">${txt}</span></div>`;
     }
   });
   

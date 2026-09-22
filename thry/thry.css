@@ -106,3 +106,49 @@ html[data-theme="dark"] .back-btn:hover {
   background: rgba(240, 160, 112, 0.1); /* Светлая медь/ржавчина */
   border-color: rgba(240, 160, 112, 0.3);
 }
+
+/* --- Контент очерка --- */
+.sc-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem 1rem;
+}
+
+.sc-sec-title {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: var(--accent);
+  border: none;
+  padding: 0;
+}
+
+.sc-sec-title:first-child {
+  margin-top: 0;
+}
+
+.sc-item {
+  display: flex;
+  align-items: baseline; /* Выравнивание по базовой линии текста */
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+  color: var(--text);
+  font-size: 1.05rem !important;
+}
+
+.sc-num {
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+  /* Без жирного и цвета, просто номер */
+}
+
+.sc-text {
+  flex: 1;
+}
+
+/* Текст почти черный в светлой теме */
+html[data-theme="light"] .sc-item,
+html[data-theme="light"] .thry-link {
+  color: #1a120b;
+}
