@@ -3,6 +3,22 @@ async function initEmblem() {
   const canvas = document.getElementById('svgCanvas');
   if (!canvas) return; 
 
+  // Эмблема — ссылка на игру (game/game.html). Подпись — на языке сайта.
+  if (!canvas.closest('a')) {
+    const link = document.createElement('a');
+    link.className = 'emblem-link';
+    link.href = (window.SITE_ROOT || './') + 'game/game.html';
+    canvas.parentNode.insertBefore(link, canvas);
+    link.appendChild(canvas);
+    const T = { ru: 'Головоломка', en: 'Puzzle', es: 'Rompecabezas', fr: 'Casse-tête' };
+    const setT = () => {
+      const t = T[document.documentElement.dataset.lang] || T.ru;
+      link.title = t; link.setAttribute('aria-label', t);
+    };
+    setT();
+    window.addEventListener('langChanged', setT);
+  }
+
   const base = window.SITE_ROOT || '';
   const dataUrl = base + 'asset/geometry.json';
 

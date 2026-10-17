@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- Звёздчатый икосаэдр — головоломка. © 2026 smr2225. Все права защищены. См. game/LICENSE. -->
+<html lang="ru" data-lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ССГ 2222 — Звёздчатый икосаэдр</title>
+  <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="../embl.css">
+  <link rel="stylesheet" href="../mble.css">
+  <link rel="stylesheet" href="game.css">
+  <script>
+    try {
+      var savedLang = localStorage.getItem('usc-lang') || 'ru';
+      document.documentElement.lang = savedLang;
+      document.documentElement.dataset.lang = savedLang;
+    } catch(e) {}
+  </script>
+</head>
+<body class="landing" data-inject="chrome" data-base="../">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="site-menu" id="main-menu"></nav>
+      <nav class="lang-switch" id="lang-switch"></nav>
+      <button id="usc-theme-toggle">◐</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1 id="tr-title" data-i18n="title"></h1>
+  </section>
+
+  <section class="panel gm-bar">
+    <button id="gm-lvl"></button>
+    <button id="gm-rb" data-i18n="btn_rules"></button>
+    <label class="gm-op"><span data-i18n="opacity"></span> <input type="range" id="gm-op" min="40" max="100" value="90"></label>
+    <button id="gm-shuf" data-i18n="btn_shuffle"></button>
+    <button id="gm-rst" data-i18n="btn_reset"></button>
+    <button id="gm-spin"></button>
+  </section>
+
+  <div id="gm-st" class="gm-status"></div>
+
+  <main class="gm-main">
+    <aside id="gm-rules" class="panel"></aside>
+    <div id="gm-view"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span id="tr-footer"></span>
+      <a href="https://t.me/s_mars_r" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </footer>
+
+  <script src="../js/boot.js"></script>
+  <script src="three.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
