@@ -1,1 +1,4 @@
-["mars1.jpg", "mars2.jpg"]
+{
+  "dark":  { "from": 1, "to": 5 },
+  "light": { "from": 1, "to": 7 }
+}

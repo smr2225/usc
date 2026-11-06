@@ -1,7 +1,5 @@
 // main.js
 const THEME_KEY = 'usc-theme';
-const BG_KEY = 'usc-bg';
-const BG_POOL = { dark: 2, light: 2 };
 
 (function () {
   var saved = null;
@@ -14,25 +12,6 @@ const BG_POOL = { dark: 2, light: 2 };
 
 function basePath() {
   return window.SITE_ROOT || './';
-}
-
-function initBackground() {
-  var bg = document.createElement('div');
-  bg.id = 'usc-bg';
-  document.body.insertBefore(bg, document.body.firstChild);
-  pickBackground(document.documentElement.getAttribute('data-theme'));
-}
-
-function pickBackground(theme) {
-  var n = BG_POOL[theme] || 0;
-  if (!n) return;
-  var last = ''; try { last = localStorage.getItem(BG_KEY) || ''; } catch (e) {}
-  var k = 1 + Math.floor(Math.random() * n);
-  if (n > 1 && theme + ':' + k === last) k = (k % n) + 1;
-  try { localStorage.setItem(BG_KEY, theme + ':' + k); } catch (e) {}
-  var name = (theme === 'dark' ? 'bd' : 'bl') + (k < 10 ? '0' : '') + k + '.jpg';
-  var root = basePath() || './';
-  document.documentElement.style.setProperty('--bg-photo', 'url("' + root + 'img/' + name + '")');
 }
 
 function bgLabels() {
@@ -48,16 +27,8 @@ function bindThemeToggle(btn) {
   btn.title = bgLabels()[cur === 'dark' ? 0 : 1];
   btn.addEventListener('click', function () {
     cur = (cur === 'dark') ? 'light' : 'dark';
-    try { localStorage.setItem(THEME_KEY, cur); } catch (e) {}
+    try { localStorage.setItem(THEME_KEY, cur); } catch ( e) {}
     document.documentElement.setAttribute('data-theme', cur);
-    if (typeof pickBackground === 'function') pickBackground(cur);
     this.title = bgLabels()[cur === 'dark' ? 0 : 1];
   });
-}
-
-// Умный запуск
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initBackground);
-} else {
-  initBackground();
 }

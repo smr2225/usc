@@ -12,6 +12,7 @@
 
     const coreScripts = [
         rootDir + 'main.js',
+        bootDir + 'bg.js',      // ← добавлен, грузится после main.js (тема уже задана)
         bootDir + 'trns.js',
         bootDir + 'layout.js',
         bootDir + 'quot.js',

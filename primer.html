@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Технологический граф</title>
+
+<style>
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#111;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+#info{
+    position:absolute;
+    top:10px;
+    left:10px;
+    z-index:1000;
+    background:rgba(0,0,0,.7);
+    padding:10px;
+    border-radius:6px;
+    max-width:300px;
+}
+
+svg{
+    width:100%;
+    height:100%;
+    cursor:grab;
+}
+
+.layer-line{
+    stroke:#333;
+    stroke-width:1;
+}
+
+.time-line{
+    stroke:#555;
+    stroke-width:2;
+}
+
+.node text{
+    fill:white;
+    font-size:14px;
+    pointer-events:none;
+}
+
+.node rect{
+    rx:6;
+    ry:6;
+    stroke:#aaa;
+    stroke-width:1;
+}
+
+.link{
+    fill:none;
+    stroke-width:2;
+}
+
+.mandatory{
+    stroke:#ffffff;
+}
+
+.support{
+    stroke:#00ff99;
+    stroke-dasharray:8 4;
+}
+
+.block{
+    stroke:#ff4444;
+}
+
+.competition{
+    stroke:#ffaa00;
+    stroke-dasharray:3 3;
+}
+
+.highlight{
+    stroke:#ffff00 !important;
+    stroke-width:4 !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="info">
+<b>Управление</b><br>
+Колёсико - масштаб<br>
+ЛКМ + протянуть - перемещение<br>
+Клик по узлу - подсветка связей
+</div>
+
+<svg id="svg">
+
+<defs>
+<marker
+id="arrow"
+viewBox="0 0 10 10"
+refX="8"
+refY="5"
+markerWidth="6"
+markerHeight="6"
+orient="auto-start-reverse">
+
+<path d="M 0 0 L 10 5 L 0 10 z" fill="white"/>
+</marker>
+</defs>
+
+<g id="viewport"></g>
+
+</svg>
+
+<script>
+
+const layers = [
+    {name:"География", y:100, color:"#666"},
+    {name:"Демография", y:250, color:"#2ecc71"},
+    {name:"Социум", y:400, color:"#f1c40f"},
+    {name:"Принципы", y:550, color:"#3498db"},
+    {name:"Практики", y:700, color:"#9b59b6"},
+    {name:"Устройства", y:850, color:"#e67e22"}
+];
+
+const nodes = [
+
+    {
+        id:"nomads",
+        name:"Кочевники",
+        x:100,
+        y:250,
+        layer:"Демография",
+        color:"#2ecc71"
+    },
+
+    {
+        id:"village",
+        name:"Деревня",
+        x:500,
+        y:250,
+        layer:"Демография",
+        color:"#2ecc71"
+    },
+
+    {
+        id:"city",
+        name:"Город",
+        x:1000,
+        y:250,
+        layer:"Демография",
+        color:"#2ecc71"
+    },
+
+    {
+        id:"rotation",
+        name:"Вращение",
+        x:450,
+        y:550,
+        layer:"Принципы",
+        color:"#3498db"
+    },
+
+    {
+        id:"pottery",
+        name:"Гончарство",
+        x:750,
+        y:700,
+        layer:"Практики",
+        color:"#9b59b6"
+    },
+
+    {
+        id:"potter",
+        name:"Гончарный круг",
+        x:1200,
+        y:850,
+        layer:"Устройства",
+        color:"#e67e22"
+    },
+
+    {
+        id:"wheel",
+        name:"Колесо",
+        x:1300,
+        y:850,
+        layer:"Устройства",
+        color:"#e67e22"
+    },
+
+    {
+        id:"cart",
+        name:"Повозка",
+        x:1700,
+        y:850,
+        layer:"Устройства",
+        color:"#e67e22"
+    },
+
+    {
+        id:"hand",
+        name:"Ручная лепка",
+        x:1200,
+        y:700,
+        layer:"Практики",
+        color:"#9b59b6"
+    }
+];
+
+const links = [
+
+{
+from:"nomads",
+to:"village",
+type:"mandatory"
+},
+
+{
+from:"village",
+to:"city",
+type:"mandatory"
+},
+
+{
+from:"rotation",
+to:"potter",
+type:"mandatory"
+},
+
+{
+from:"pottery",
+to:"potter",
+type:"mandatory"
+},
+
+{
+from:"rotation",
+to:"wheel",
+type:"mandatory"
+},
+
+{
+from:"wheel",
+to:"cart",
+type:"mandatory"
+},
+
+{
+from:"hand",
+to:"potter",
+type:"competition"
+},
+
+{
+from:"city",
+to:"potter",
+type:"support"
+}
+
+];
+
+const svg = document.getElementById("svg");
+const viewport = document.getElementById("viewport");
+
+function nodeById(id){
+    return nodes.find(n=>n.id===id);
+}
+
+function draw(){
+
+    layers.forEach(layer=>{
+
+        const line = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
+
+        line.setAttribute("x1",0);
+        line.setAttribute("x2",5000);
+        line.setAttribute("y1",layer.y);
+        line.setAttribute("y2",layer.y);
+        line.setAttribute("class","layer-line");
+
+        viewport.appendChild(line);
+
+        const txt = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+        );
+
+        txt.setAttribute("x",20);
+        txt.setAttribute("y",layer.y - 8);
+        txt.setAttribute("fill",layer.color);
+
+        txt.textContent = layer.name;
+
+        viewport.appendChild(txt);
+    });
+
+    for(let x=0; x<=5000; x+=500){
+
+        const l = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
+
+        l.setAttribute("x1",x);
+        l.setAttribute("x2",x);
+        l.setAttribute("y1",40);
+        l.setAttribute("y2",1000);
+        l.setAttribute("stroke","#222");
+
+        viewport.appendChild(l);
+    }
+
+    links.forEach(link=>{
+
+        const a = nodeById(link.from);
+        const b = nodeById(link.to);
+
+        const path = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
+
+        path.setAttribute("x1",a.x);
+        path.setAttribute("y1",a.y);
+
+        path.setAttribute("x2",b.x);
+        path.setAttribute("y2",b.y);
+
+        path.setAttribute(
+            "class",
+            "link " + link.type
+        );
+
+        path.setAttribute(
+            "marker-end",
+            "url(#arrow)"
+        );
+
+        path.dataset.from = a.id;
+        path.dataset.to = b.id;
+
+        viewport.appendChild(path);
+    });
+
+    nodes.forEach(node=>{
+
+        const g = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "g"
+        );
+
+        g.setAttribute("class","node");
+
+        const rect = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect"
+        );
+
+        rect.setAttribute("x",node.x-60);
+        rect.setAttribute("y",node.y-20);
+        rect.setAttribute("width",120);
+        rect.setAttribute("height",40);
+
+        rect.setAttribute(
+            "fill",
+            node.color
+        );
+
+        const text = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+        );
+
+        text.setAttribute("x",node.x);
+        text.setAttribute("y",node.y+5);
+        text.setAttribute("text-anchor","middle");
+
+        text.textContent = node.name;
+
+        g.appendChild(rect);
+        g.appendChild(text);
+
+        g.addEventListener("click",()=>{
+
+            document
+                .querySelectorAll(".highlight")
+                .forEach(el=>el.classList.remove("highlight"));
+
+            document
+                .querySelectorAll("[data-from]")
+                .forEach(el=>{
+
+                    if(
+                        el.dataset.from===node.id ||
+                        el.dataset.to===node.id
+                    ){
+                        el.classList.add("highlight");
+                    }
+                });
+        });
+
+        viewport.appendChild(g);
+    });
+}
+
+draw();
+
+let scale = 1;
+let offsetX = 0;
+let offsetY = 0;
+
+function updateTransform(){
+
+    viewport.setAttribute(
+        "transform",
+        `translate(${offsetX},${offsetY}) scale(${scale})`
+    );
+}
+
+svg.addEventListener("wheel",(e)=>{
+
+    e.preventDefault();
+
+    if(e.deltaY<0)
+        scale*=1.1;
+    else
+        scale*=0.9;
+
+    updateTransform();
+
+},{passive:false});
+
+let dragging=false;
+let startX=0;
+let startY=0;
+
+svg.addEventListener("mousedown",(e)=>{
+
+    dragging=true;
+
+    startX=e.clientX;
+    startY=e.clientY;
+
+});
+
+window.addEventListener("mouseup",()=>{
+
+    dragging=false;
+
+});
+
+window.addEventListener("mousemove",(e)=>{
+
+    if(!dragging) return;
+
+    offsetX += e.clientX-startX;
+    offsetY += e.clientY-startY;
+
+    startX=e.clientX;
+    startY=e.clientY;
+
+    updateTransform();
+});
+
+</script>
+
+</body>
+</html>
