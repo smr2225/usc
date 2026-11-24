@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Каталог игр проекта «Марс-2222». В меню сайта НЕ входит — вход через эмблему.
+     Структура страницы — как у всех разделов сайта (chrome через ../js/boot.js). © 2026 smr2225. -->
+<html lang="ru" data-lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ССГ 2222 — Игры</title>
+  <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="../mble.css">
+  <link rel="stylesheet" href="game.css">
+  <script>try{var t=localStorage.getItem('usc-theme')||'light';document.documentElement.dataset.theme=t;var l=localStorage.getItem('usc-lang')||'ru';document.documentElement.lang=l;document.documentElement.dataset.lang=l;}catch(e){}</script>
+</head>
+<body class="landing" data-inject="chrome" data-base="../">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="site-menu" id="main-menu"></nav>
+      <nav class="lang-switch" id="lang-switch"></nav>
+      <button id="usc-theme-toggle">◐</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <!-- Эмблема уже обёрнута в <a>: embl.js не оборачивает повторно, только рисует.
+         Со страницы каталога эмблема ведёт на главную сайта (../), а не в сам каталог. -->
+    <div class="hero-emblem">
+      <a class="emblem-link" href="../" aria-label="На сайт" title="На сайт">
+        <canvas id="svgCanvas" width="240" height="240"></canvas>
+      </a>
+    </div>
+    <h1 id="tr-title" data-i18n="title"></h1>
+    <p class="gm-catalog-sub" data-i18n="subtitle"></p>
+  </section>
+
+  <main class="gm-catalog-wrap">
+    <div id="gm-catalog" class="gm-catalog"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span id="tr-footer"></span>
+      <a href="https://t.me/s_mars_r" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </footer>
+
+  <script src="../js/boot.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

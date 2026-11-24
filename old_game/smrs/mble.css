@@ -1,0 +1,72 @@
+/* ===== USC 2222 · mble.css  (полная исправленная версия v3) =====
+ *
+ * ЧТО ИЗМЕНИЛОСЬ vs v2:
+ *  8. По запросу пользователя: всё содержимое шапки прижато вправо.
+ *     Бургер, lang, theme — все справа в порядке: бургер → lang → theme.
+ *     Меню по-прежнему absolute-дропдаун справа под шапкой.
+ */
+
+/* FIX: overlay больше не нужен. */
+.menu-overlay { display: none !important; }
+
+@media (max-width: 768px) {
+  /* FIX v3: всё содержимое шапки прижато вправо */
+  .header-inner {
+    justify-content: flex-end;
+    padding: 0 1rem;
+    position: relative;                /* якорь для absolute-меню */
+    gap: .25rem .8rem;
+  }
+
+  /* FIX v3: порядок — бургер, lang, theme (все справа) */
+  #menu-toggle { display: block; order: 0; }
+  .lang-switch { order: 1; }
+  #usc-theme-toggle { order: 2; }
+
+  /* .site-menu вырвано из потока (absolute), не двигает lang/theme. */
+  .site-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .4rem .5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .15rem;
+    min-width: 180px;
+    max-width: 240px;
+    z-index: 50;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    display: none;
+  }
+  .site-menu.open { display: flex; }
+
+  .menu-items { flex-direction: column; align-items: flex-start; gap: .15rem; width: 100%; }
+  .menu-items > a {
+    padding: .2rem .4rem;
+    font-size: .8rem;
+    width: 100%;
+    border-radius: 3px;
+  }
+  .menu-items > a:hover { background: rgba(255,255,255,.06); }
+
+  .menu-group { width: 100%; }
+  .parent-row { justify-content: space-between; padding: .15rem 0; }
+  .parent-row a { font-size: .8rem; }
+  .sub-toggle { font-size: .8rem; display: block; padding: 0 .25rem; }
+
+  /* подменю раскрывается inline под родителем */
+  .submenu {
+    position: static;
+    border: none;
+    padding: .1rem 0 .2rem .8rem;
+    background: none;
+    min-width: 0;
+    box-shadow: none;
+    display: none;
+  }
+  .menu-group.open .submenu { display: flex; }
+  .submenu a { font-size: .75rem; padding: .15rem .3rem; }
+}

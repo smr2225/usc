@@ -1,0 +1,48 @@
+/* Звёздчатый икосаэдр (5 тетраэдров, 60 граней) — головоломка.
+ * © 2026 smr2225. Все права защищены. См. LICENSE.
+ * Использует three.js (MIT), см. LICENSE-three.txt. */
+/* ===== USC 2222 · game.css =====
+ * Игра «Звёздчатый икосаэдр». Цвета — только из переменных темы (main.css),
+ * фон страницы — общий #usc-bg (пул img/), игра на нём прозрачна.
+ */
+.landing .gm-bar { display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center; align-items:center; }
+.gm-bar button { background:var(--panel); color:var(--text); border:1px solid var(--border); border-radius:6px; padding:.35rem .8rem; font-size:.85rem; cursor:pointer; }
+.gm-bar button:hover { color:var(--accent); border-color:var(--accent); }
+.gm-op { display:flex; align-items:center; gap:.4rem; font-size:.8rem; color:var(--muted); }
+.gm-op input { width:100px; accent-color:var(--accent); }
+
+.gm-status { max-width:var(--content-width); margin:.3rem auto; padding:.2rem 1rem; text-align:center; min-height:1.5em; color:var(--text); }
+.gm-status.win { color:#2ecc40; font-weight:600; }
+
+.gm-main { position:relative; display:flex; gap:.5rem; max-width:var(--content-width); width:100%; margin:0 auto; padding:0 1rem; height:min(66vh,640px); min-height:340px; }
+#gm-rules { width:300px; flex:none; margin:0; overflow:auto; font-size:.8rem; line-height:1.45; background:var(--panel-footer,var(--panel)); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+#gm-rules.hide { display:none; }
+#gm-rules h3 { font-size:.85rem; color:var(--accent); margin:.1rem 0 .3rem; }
+#gm-rules h3:not(:first-child) { margin-top:.8rem; }
+#gm-rules ul { padding-left:1.1rem; }
+#gm-rules li { margin:.25rem 0; }
+
+#gm-view { flex:1; min-width:0; position:relative; cursor:grab; touch-action:none; }
+#gm-view:active { cursor:grabbing; }
+#gm-view canvas { display:block; width:100%; height:100%; filter:drop-shadow(0 6px 14px rgba(0,0,0,.4)); }
+
+@media (max-width: 768px) {
+  .gm-main { height:min(62vh,520px); }
+  #gm-rules { position:absolute; left:1rem; right:1rem; top:0; width:auto; max-height:80%; z-index:5; }
+}
+
+.gm-rules-top { display:flex; justify-content:space-between; align-items:flex-start; gap:.5rem; margin-bottom:.4rem; padding-bottom:.3rem; border-bottom:1px solid var(--border); color:var(--muted); font-size:.75rem; }
+.gm-rules-top button { flex:none; background:none; border:1px solid var(--border); border-radius:4px; color:var(--text); cursor:pointer; padding:0 .45rem; font-size:.9rem; line-height:1.4; }
+.gm-rules-top button:hover { color:var(--accent); border-color:var(--accent); }
+
+/* Меню поверх всего и с плотной подложкой: полупрозрачная --panel пропускала заголовок */
+.site-header { z-index:200; }
+.hero { z-index:0; }
+.submenu { backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+html[data-theme="dark"] .submenu { background:rgba(42,24,16,.96); }
+html[data-theme="light"] .submenu { background:rgba(247,236,217,.97); }
+@media (max-width: 768px) {
+  .site-menu { backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 6px 20px rgba(0,0,0,.45); }
+  html[data-theme="dark"] .site-menu { background:rgba(42,24,16,.96); }
+  html[data-theme="light"] .site-menu { background:rgba(247,236,217,.97); }
+}

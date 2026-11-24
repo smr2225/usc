@@ -1,14 +1,14 @@
-/* ===== USC 2222 · main.css  (исправленная версия) =====
- * Изменения vs оригинала отмечены меткой FIX в комментариях.
- * 1. Светлая тема осветлена значительно (убран тёмный низ градиента).
- * 2. Тёмная тема слегка осветлена.
- * 3. #usc-bg получает --bg-photo из bg.js.
- * 4. Hover цитат не теряет цвет текста.
+/* ===== USC 2222 · main.css  (FIX v16) =====
+ * 1. Тёмная тема возвращена к оригиналу (--bg-overlay:none, Марс виден).
+ * 2. Светлая тема: overlay усилен, текст почти чёрный.
+ * 3. Шрифт body: 1rem базовый, на десктопе (≥769px) — 1.15rem.
+ * 4. --panel поднят до .55 — панели читаемые.
+ * 5. Убран transition на #usc-bg — меньше нагрузка на GPU.
  */
 
 :root{ --mono:'Courier New',monospace; --content-width:1000px; --bg-photo:none; }
 
-/* FIX: тёмная — слегка светлее */
+/* Тёмная тема — КАК БЫЛО */
 html[data-theme="dark"]{
   --bg-gradient:linear-gradient(180deg,#1a0f0a,#4a2818);
   --bg-overlay:none;
@@ -16,55 +16,65 @@ html[data-theme="dark"]{
   --muted:#c2b09c;
   --link:#f0a070;
   --accent:#d6551f;
-  --panel:rgba(240,229,213,.10);       /* FIX v14: осветляем — светлый цвет с малой альфой */
-  --panel-footer:rgba(240,229,213,.16); /* FIX v14: подвал чуть светлее панели (не темнее) */
+  --panel:rgba(240,229,213,.10);
+  --panel-footer:rgba(240,229,213,.16);
   --border:rgba(240,229,213,.18);
 }
 
-/* FIX: светлая — значительно светлее. Убран тёмный низ #7a3b1d */
+/* Светлая тема — усиленная маска, тёмный текст */
 html[data-theme="light"]{
   --bg-gradient:linear-gradient(180deg,#f7ecd9,#d8b483);
-  --bg-overlay:linear-gradient(180deg,rgba(247,236,217,.55),rgba(216,180,131,.35));
-  --text:#3d2818;
-  --muted:#8a6a4f;
-  --link:#b04515;
-  --accent:#d65a1f;
-  --panel:rgba(255,250,242,.18);       /* подложка практически прозрачная */
-  --panel-footer:rgba(235,220,195,.28); /* подвал чуть плотнее */
-  --border:rgba(74,40,20,.18);
+  --bg-overlay:linear-gradient(180deg,rgba(247,236,217,.55),rgba(216,180,131,.45));  
+  --text:#1a0d05;
+  --muted:#6a4a2f;
+  --link:#8a2a08;
+  --accent:#b04515;
+  --panel:rgba(255,250,242,.55);
+  --panel-footer:rgba(235,220,195,.70);
+  --border:rgba(74,40,20,.25);
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{ color:var(--text); font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; line-height:1.4; background:var(--bg-gradient); font-size:.9rem; overflow-x:hidden; }
+
+/* Базовый шрифт (мобильный) — не трогаем */
+body{
+  color:var(--text);
+  font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  line-height:1.4;
+  background:var(--bg-gradient);
+  font-size:1rem;
+  overflow-x:hidden;
+}
+
+/* Десктоп — увеличиваем корневой размер шрифта.
+   ВСЕ rem во ВСЕХ CSS (svts, glsr, hist, cnst и т.д.) автоматически тянется за html. */
+@media (min-width: 769px){
+  html { font-size: 1.2em; }   /* 16px → 19.2px, +20% ко всему сайту */
+}
+
 a{color:var(--link);text-decoration:none}
 
 .header-inner, .footer-inner, .landing .hero, .landing .panel {
   max-width: var(--content-width); margin: 0 auto; width: 100%; padding: 0 1rem;
 }
 
-/* FIX v9: эмблема — углы не режутся. Без overflow:hidden, без border-radius на wrapper.
- * FIX v13: уменьшалась через transform: scale(.97).
- * FIX v14: scale убран — не помогает, проблема в js/embl.js (вершины фигуры выходят за полотно).
- *          Жду от пользователя реальный embl.js, чтобы починить рисунок. */
 .hero-emblem { overflow: visible; padding: .2rem; }
 .hero-emblem canvas,
 .hero-emblem svg { display: inline-block; overflow: visible; }
 
-/* FIX: шапка ограничена колонкой контента, не растянута на весь широкий монитор */
 .site-header {
   position: sticky; top: 0; z-index: 100;
   max-width: var(--content-width);
   margin: 0 auto;
-  background: transparent;
-  border-bottom: none;
+  background: var(--panel-footer);
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  border-bottom: 1px solid var(--border);
 }
+
 .header-inner { display: flex; align-items: center; justify-content: center; gap: .25rem .8rem; height: 40px; }
 
-/* FIX: подвал ограничен колонкой + получил фон для читаемости поверх фото Марса.
- * Убрана фиксированная height: 30px — теперь подвал растёт по контенту,
- * чтобы 2 строки на мобильном не выскакивали из маски.
- * FIX v8: подвал чуть затемнён, чтобы отличаться от контента. */
 .site-footer {
   border-top: none;
   margin-top: auto;
@@ -72,13 +82,11 @@ a{color:var(--link);text-decoration:none}
   max-width: var(--content-width);
   margin-left: auto;
   margin-right: auto;
-  background: var(--panel-footer, var(--panel));   /* если не задана — fallback */
+  background: var(--panel-footer, var(--panel));
   border-radius: 6px;
 }
-.footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .25rem .8rem; min-height: 30px; font-size: .75rem; padding: .15rem 0; }
+.footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .25rem .8rem; min-height: 30px; font-size: .8rem; padding: .15rem 0; }
 
-/* FIX: Telegram-ссылка — читаемая на любом фоне, явный цвет.
- * FIX v13: фон убран — подложка теперь прозрачная, ссылке тоже не нужен. */
 .site-footer a {
   color: var(--link);
   font-weight: 600;
@@ -96,31 +104,43 @@ a{color:var(--link);text-decoration:none}
 
 .site-menu { display:flex; align-items:center; gap:.4rem 1rem; }
 .menu-items { display:flex; align-items:center; gap:.4rem 1rem; }
-.menu-items > a { color:var(--muted); font-size:.9rem; padding:.1rem 0; }   /* FIX v9: 0.8→0.9rem, выровнять с body */
+.menu-items > a { color:var(--muted); font-size:.95rem; padding:.1rem 0; }
 .menu-items > a:hover, .menu-items > a.active { color:var(--accent); }
 
 .menu-group { position:relative; display:flex; flex-direction:column; }
 .parent-row { display:flex; align-items:center; gap:.15rem; }
-.parent-row a { color:var(--muted); font-size:.9rem; padding:.1rem 0; }   /* FIX v9: 0.8→0.9rem */
+.parent-row a { color:var(--muted); font-size:.95rem; padding:.1rem 0; }
 .parent-row a:hover, .parent-row a.active { color:var(--accent); }
 
-.sub-toggle { background:none; border:none; color:var(--muted); cursor:pointer; font-size:.9rem; padding:0 .2rem; line-height:1; transition: transform 0.2s; }   /* FIX v9: 0.8→0.9rem */
+.sub-toggle { background:none; border:none; color:var(--muted); cursor:pointer; font-size:.95rem; padding:0 .2rem; line-height:1; transition: transform 0.2s; }
 .menu-group.parent-active .sub-toggle { color:var(--accent); }
 .menu-group.open .sub-toggle { transform: rotate(90deg); }
 
-.submenu { position:absolute; top:100%; left:0; background:var(--panel); border:none; border-radius:4px; padding:.2rem; display:none; flex-direction:column; gap:.1rem; min-width:120px; z-index:20; }
+.submenu {
+  position:absolute; top:100%; left:0;
+  background: var(--panel-footer);
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:.2rem;
+  display:none;
+  flex-direction:column;
+  gap:.1rem;
+  min-width:120px;
+  z-index:20;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+}
+
 .menu-group:hover .submenu, .menu-group.open .submenu { display: flex; }
-.submenu a { font-size:.85rem; padding:.15rem .3rem; border-radius:2px; color:var(--muted); white-space:nowrap; }   /* FIX v9: 0.75→0.85rem */
+.submenu a { font-size:.9rem; padding:.15rem .3rem; border-radius:2px; color:var(--muted); white-space:nowrap; }
 .submenu a:hover { background:rgba(255,255,255,.05); color:var(--link); }
 .submenu a.active { color:var(--accent); }
 
 .lang-switch { display:flex; gap:.3rem; margin-left:.5rem; }
-.lang-switch a { color:var(--muted); font-size:.85rem; cursor:pointer; }   /* FIX v9: 0.75→0.85rem */
+.lang-switch a { color:var(--muted); font-size:.9rem; cursor:pointer; }
 .lang-switch a.active { color:var(--accent); }
 
-/* FIX: .landing ограничена колонкой контента — весь контент внутри 1000px.
- * Раньше body был на всю ширину, и hero/панели хоть и центрировались, но
- * фон и отступы «растекались» по широкому монитору. */
 .landing {
   display: block;
   width: 100%;
@@ -132,14 +152,12 @@ a{color:var(--link);text-decoration:none}
 .landing .panel { padding: .5rem 1rem; }
 .hero { text-align:center; margin-bottom:.2rem; position: relative; }
 .panel { background:var(--panel); border:none; border-radius:6px; margin:.5rem auto; padding:.5rem 1rem; }
-.panel h2 { font-size:.9rem; color:var(--accent); margin-bottom:.4rem; }
+.panel h2 { font-size:1rem; color:var(--accent); margin-bottom:.4rem; }
 
-/* FIX: фон-фото. #usc-bg уже определён, но добавим плавное появление. */
 #usc-bg{
   position:fixed; inset:0; z-index:-1;
   background-image:var(--bg-overlay), var(--bg-photo, none), var(--bg-gradient);
   background-size:auto, cover, auto;
   background-position:center;
   background-repeat:no-repeat;
-  transition: background-image .4s ease-in-out;
 }

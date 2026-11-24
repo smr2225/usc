@@ -1,0 +1,22 @@
+Звёздчатый икосаэдр (5 тетраэдров, 60 граней) — головоломка
+Stellated icosahedron (compound of five tetrahedra, 60 faces) — puzzle game
+
+Copyright (c) 2026 smr2225. Все права защищены. All rights reserved.
+
+RU. Исходный код, тексты (game.json), геометрия (shape.json), оформление и правила
+игры в папке game/ (кроме сторонних библиотек, см. ниже) являются собственностью
+автора. Без письменного разрешения автора запрещено копировать, распространять,
+изменять, публиковать на других ресурсах и использовать в коммерческих целях.
+Разрешён просмотр на сайте и личная игра.
+
+EN. The source code, texts (game.json), geometry (shape.json), design and game
+rules in the game/ folder (except third-party libraries, see below) are the
+property of the author. Without the author's written permission, copying,
+distribution, modification, republication elsewhere and commercial use are not
+permitted. Viewing on the site and personal play are allowed.
+
+Сторонние компоненты / Third-party:
+- three.min.js — three.js r128, MIT License, см. LICENSE-three.txt /
+  see LICENSE-three.txt. Эта лицензия действует только для three.js.
+
+Данный файл — не юридическая консультация. This file is not legal advice.

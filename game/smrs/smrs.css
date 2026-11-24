@@ -1,0 +1,146 @@
+/* ===== USC 2222 · smrs.css =====
+ * Симуляция посадки на Марс. Цвета UI — из переменных темы (main.css).
+ * Цвета в canvas (рельеф Марса, корабль) — фиксированные, как в оригинале:
+ * Марс остаётся Марсом в любой теме.
+ */
+
+.smrs-main {
+  max-width: var(--content-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem 1rem;
+}
+
+/* ---- setup: сетка параметров ---- */
+.smrs-setup { max-width: 640px; margin: 0 auto; }
+#grid {
+  display: grid;
+  grid-template-columns: 1fr 110px 44px;
+  gap: 6px 8px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+#grid label { font-size: .85rem; color: var(--muted); }
+#grid input[type=number],
+#grid select {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 5px 8px;
+  border-radius: 3px;
+  width: 100%;
+}
+#grid input[type=number] { text-align: right; }
+#grid span.u { color: var(--muted); font-size: .8rem; }
+
+#start,
+.smrs-sim button {
+  font: inherit;
+  color: #fff3e3;
+  background: var(--accent);
+  border: 1px solid rgba(0,0,0,.25);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#start:hover,
+.smrs-sim button:hover { filter: brightness(1.1); }
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* ---- sim: canvas + панель + подсказки ---- */
+.smrs-sim {
+  display: none;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+#wrap { position: relative; width: min(96vw, 82vh, 720px); }
+#c {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+#rbar {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+#rbar input[type=range] { flex: 1; accent-color: var(--accent); }
+#rbar select {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 4px;
+  border-radius: 3px;
+}
+
+#res {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  background: rgba(243,226,200,.92);
+  color: #2a140d;
+  padding: 20px;
+  border-radius: 4px;
+}
+#res h2 { margin: 0; font-size: 1.4rem; font-weight: normal; }
+#res p { margin: 0; color: #6e4a38; line-height: 1.5; }
+#res .bt { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+
+#panel {
+  width: min(96vw, 240px);
+  background: var(--panel-footer, var(--panel));
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: .85rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+#panel h3 {
+  margin: 2px 0 6px;
+  font-size: .85rem;
+  font-weight: normal;
+  color: var(--muted);
+}
+#panel div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--border);
+}
+#panel div:last-child { border: 0; }
+#panel b { font-weight: normal; }
+
+.hint {
+  color: var(--muted);
+  font-size: .8rem;
+  max-width: 640px;
+  line-height: 1.55;
+  margin: 12px 0;
+}
+.smrs-sim .hint { flex-basis: 100%; text-align: left; }
+
+@media (max-width: 640px) {
+  #grid { grid-template-columns: 1fr 90px 36px; gap: 4px 6px; }
+  #grid label { font-size: .78rem; }
+}

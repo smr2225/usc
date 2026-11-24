@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- Симуляция посадки на Марс — игра проекта «Марс-2222». © 2026 smr2225. -->
+<html lang="ru" data-lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ССГ 2222 — Посадка на Марс</title>
+  <link rel="stylesheet" href="../../main.css">
+  <link rel="stylesheet" href="../../mble.css">
+  <link rel="stylesheet" href="smrs.css">
+  <script>try{var t=localStorage.getItem('usc-theme')||'light';document.documentElement.dataset.theme=t;var l=localStorage.getItem('usc-lang')||'ru';document.documentElement.lang=l;document.documentElement.dataset.lang=l;}catch(e){}</script>
+</head>
+<body class="landing" data-inject="chrome" data-base="../../">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="site-menu" id="main-menu"></nav>
+      <nav class="lang-switch" id="lang-switch"></nav>
+      <button id="usc-theme-toggle">◐</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <a class="back-link" href="../game.html" data-i18n="back"></a>
+    <h1 id="tr-title" data-i18n="title"></h1>
+  </section>
+
+  <main class="sm-main">
+    <div id="setup">
+      <div id="grid"></div>
+      <button id="start" data-i18n="start"></button>
+      <p class="hint" data-i18n="hint_setup"></p>
+    </div>
+
+    <div id="sim">
+      <div id="wrap">
+        <canvas id="c" width="720" height="720"></canvas>
+        <div id="rbar">
+          <button id="rplay" data-i18n="pause"></button>
+          <input id="rseek" type="range" min="0" max="0" value="0">
+          <select id="rspd">
+            <option value="0.25">×0.25</option><option value="0.5">×0.5</option>
+            <option value="1" selected>×1</option><option value="2">×2</option>
+            <option value="4">×4</option><option value="8">×8</option><option value="16">×16</option>
+          </select>
+          <button id="rclose" data-i18n="close"></button>
+        </div>
+        <div id="res">
+          <h2 id="rt"></h2>
+          <p id="rp"></p>
+          <div class="bt">
+            <button id="again" data-i18n="again"></button>
+            <button id="replay" data-i18n="replay"></button>
+            <button id="next" style="display:none" data-i18n="next"></button>
+            <button id="setupBtn" data-i18n="setup_btn"></button>
+          </div>
+        </div>
+      </div>
+      <div id="panel"><h3 data-i18n="panel_h"></h3></div>
+      <div class="hint" id="sm-simhint"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span id="tr-footer"></span>
+      <a href="https://t.me/s_mars_r" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </footer>
+
+  <script src="../../js/boot.js"></script>
+  <script src="smrs.js"></script>
+</body>
+</html>

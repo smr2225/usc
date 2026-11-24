@@ -1,0 +1,82 @@
+/* ===== USC 2222 · game/smrs/smrs.css =====
+ * Симуляция посадки на Марс. Внешний chrome (форма, телеметрия, подсказки) —
+ * на переменных темы (main.css), днём/ночью. Вьюпорт (#wrap: canvas + #res + #rbar)
+ * держит марсианскую палитру — это «прибор» игры.
+ */
+
+/* Шрифт «прибора» — Georgia с табулярными цифрами; hero/футер/меню — site-sans из main.css */
+#setup, #panel, #wrap { font-family: Georgia, "Times New Roman", serif; }
+
+.sm-main { max-width: var(--content-width); margin: 0 auto; padding: 0 1rem 1rem; }
+
+.back-link { display: inline-block; font-size: .85rem; color: var(--link); margin-bottom: .2rem; }
+.back-link:hover { color: var(--accent); }
+
+/* ---- форма параметров: тема ---- */
+#setup { max-width: 640px; width: 100%; margin: .5rem auto; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: .8rem 1rem; }
+#grid { display: grid; grid-template-columns: 1fr 110px 44px; gap: 6px 8px; align-items: center; margin-bottom: 14px; }
+#grid label { font-size: .85rem; color: var(--text); }
+#grid input[type=number], #grid select {
+  font: inherit; color: var(--text); background: var(--panel-footer, var(--panel));
+  border: 1px solid var(--border); padding: 5px 8px; border-radius: 3px; width: 100%;
+}
+#grid input[type=number] { text-align: right; }
+#grid input[type=checkbox] { width: auto; accent-color: var(--accent); }
+#grid input[type=range] { accent-color: var(--accent); }
+#grid span.u { color: var(--muted); font-size: 14px; }
+
+/* ---- кнопки: акцент темы, кремовый текст (читается на обеих темах) ---- */
+#setup button, #res button, #rbar button {
+  font: inherit; color: #fff3e3; background: var(--accent);
+  border: 1px solid rgba(0,0,0,.22); padding: 8px 16px; border-radius: 4px; cursor: pointer;
+}
+#setup button:hover, #res button:hover, #rbar button:hover { filter: brightness(1.08); }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+.hint { color: var(--muted); font-size: 14px; max-width: 640px; line-height: 1.55; margin: 12px 0; }
+#sim { display: none; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: flex-start; width: 100%; }
+#sim .hint { flex-basis: 100%; text-align: left; }
+
+/* ---- вьюпорт: марсианская палитра (фиксированная) ---- */
+#wrap {
+  --sm-ink:#3b2116; --sm-dim:#6e4a38; --sm-line:#c29566; --sm-field:#fbf1de;
+  position: relative; width: min(96vw, 82vh, 720px);
+}
+#wrap canvas { width: 100%; height: auto; display: block; border: 1px solid #8a5a3c; }
+
+#res {
+  position: absolute; inset: 0; display: none; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px; text-align: center;
+  background: rgba(243, 226, 200, .92); padding: 20px; color: var(--sm-ink);
+}
+#res h2 { margin: 0; font-size: clamp(20px, 4vw, 26px); font-weight: normal; color: var(--sm-ink); }
+#res p { margin: 0; color: var(--sm-dim); line-height: 1.5; }
+#res .bt { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+
+#rbar { display: none; align-items: center; gap: 8px; margin-top: 8px; }
+#rbar input[type=range] { flex: 1; accent-color: var(--accent); }
+#rbar select {
+  font: inherit; color: var(--sm-ink); background: var(--sm-field);
+  border: 1px solid var(--sm-line); padding: 4px; border-radius: 3px;
+}
+
+/* ---- телеметрия: тема ---- */
+#panel {
+  width: min(96vw, 240px); background: var(--panel-footer, var(--panel));
+  border: 1px solid var(--border); padding: 8px 12px; font-size: 15px;
+  font-variant-numeric: tabular-nums; color: var(--text); border-radius: 6px;
+}
+#panel h3 { margin: 2px 0 6px; font-size: 15px; font-weight: normal; color: var(--muted); }
+#panel div { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-bottom: 1px solid var(--border); }
+#panel div:last-child { border: 0; }
+#panel b { font-weight: normal; color: var(--text); }
+
+/* ---- адаптив ---- */
+@media (max-width: 640px) {
+  #grid { grid-template-columns: 1fr 96px 36px; gap: 5px 6px; }
+  #grid label { font-size: .8rem; }
+  #panel { width: 100%; }
+}
+@media (max-width: 400px) {
+  #grid { grid-template-columns: 1fr 80px 32px; }
+}

@@ -1,0 +1,31 @@
+/* ===== USC 2222 · game/game.css — каталог игр =====
+ * Только переменные темы (main.css). Адаптивная сетка карточек с эмблемами (SVG).
+ */
+.gm-catalog-wrap { max-width: var(--content-width); margin: 0 auto; padding: 0 1rem; }
+.gm-catalog-sub { text-align: center; color: var(--muted); font-size: .9rem; margin: .2rem 1rem 1.4rem; max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+
+.gm-catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; padding-bottom: 2rem; }
+
+.gmc-card { display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-decoration: none; color: var(--text); transition: transform .15s ease, border-color .15s ease, background .15s ease; }
+.gmc-card:hover { transform: translateY(-4px); border-color: var(--accent); background: var(--panel-footer, var(--panel)); }
+.gmc-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Превью-плитка: тёмный «космос» — эмблемы (со своими цветами) читаются на любой теме */
+.gmc-preview { height: 150px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, #14141f, #070709); }
+.gmc-emblem { width: 124px; height: 124px; object-fit: contain; display: block; }
+
+.gmc-body { padding: .85rem 1rem 1rem; display: flex; flex-direction: column; flex: 1; }
+.gmc-body h2 { font-size: 1rem; color: var(--accent); margin-bottom: .35rem; font-weight: 600; }
+.gmc-body p { font-size: .85rem; color: var(--muted); line-height: 1.45; flex: 1; }
+.gmc-play { display: inline-block; margin-top: .7rem; font-size: .85rem; color: var(--link); font-weight: 600; }
+.gmc-card:hover .gmc-play { color: var(--accent); }
+
+.gmc-card.soon { opacity: .62; cursor: default; }
+.gmc-card.soon:hover { transform: none; border-color: var(--border); }
+.gmc-card.soon .gmc-play { color: var(--muted); }
+
+@media (max-width: 640px) {
+  .gm-catalog { grid-template-columns: 1fr; }
+  .gmc-preview { height: 120px; }
+  .gmc-emblem { width: 104px; height: 104px; }
+}

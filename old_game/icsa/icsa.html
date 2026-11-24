@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Звёздчатый икосаэдр — интерактивная 3D-модель. Игра проекта «Марс-2222». © 2026 smr2225. -->
+<html lang="ru" data-lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ССГ 2222 — Звёздчатый икосаэдр</title>
+  <link rel="stylesheet" href="../../main.css">
+  <link rel="stylesheet" href="../../mble.css">
+  <link rel="stylesheet" href="icsa.css">
+  <script>try{var t=localStorage.getItem('usc-theme')||'light';document.documentElement.dataset.theme=t;var l=localStorage.getItem('usc-lang')||'ru';document.documentElement.lang=l;document.documentElement.dataset.lang=l;}catch(e){}</script>
+</head>
+<body class="landing" data-inject="chrome" data-base="../../">
+
+  <header class="site-header">
+    <div class="header-inner">
+      <button id="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="site-menu" id="main-menu"></nav>
+      <nav class="lang-switch" id="lang-switch"></nav>
+      <button id="usc-theme-toggle">◐</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <a class="back-link" href="../game.html" data-i18n="back"></a>
+    <h1 id="tr-title" data-i18n="title"></h1>
+  </section>
+
+  <main class="ic-main">
+    <div class="ic-stage"><canvas id="ico"></canvas></div>
+    <div class="ic-controls">
+      <button id="btn-rotate"></button>
+      <button id="btn-explode"></button>
+    </div>
+    <p class="ic-hint" data-i18n="hint"></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span id="tr-footer"></span>
+      <a href="https://t.me/s_mars_r" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </footer>
+
+  <script src="../../js/boot.js"></script>
+  <script src="three.min.js"></script>
+  <script src="icsa.js"></script>
+</body>
+</html>

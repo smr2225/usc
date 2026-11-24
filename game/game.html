@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<!-- Звёздчатый икосаэдр — головоломка. © 2026 smr2225. Все права защищены. См. game/LICENSE. -->
+<!-- Каталог игр ССГ 2222. © 2026 smr2225. Все права защищены. -->
 <html lang="ru" data-lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="google" content="notranslate" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ССГ 2222 — Звёздчатый икосаэдр</title>
+  <title>ССГ 2222 — Игры</title>
   <link rel="stylesheet" href="../main.css">
   <link rel="stylesheet" href="../embl.css">
   <link rel="stylesheet" href="../mble.css">
+  <link rel="stylesheet" href="../svts/svts.css">
   <link rel="stylesheet" href="game.css">
   <script>
     try {
@@ -20,6 +21,8 @@
 </head>
 <body class="landing" data-inject="chrome" data-base="../">
 
+  <div id="usc-bg"></div>
+
   <header class="site-header">
     <div class="header-inner">
       <button id="menu-toggle" aria-label="Menu">☰</button>
@@ -30,24 +33,35 @@
   </header>
 
   <section class="hero">
-    <h1 id="tr-title" data-i18n="title"></h1>
+    <div class="hero-emblem">
+      <canvas id="svgCanvas" width="190" height="190"></canvas>
+    </div>
+    <h1 id="tr-title"></h1>
+    <p class="hero-epigraph" id="tr-subtitle"></p>
   </section>
 
-  <section class="panel gm-bar">
-    <button id="gm-lvl"></button>
-    <button id="gm-rb" data-i18n="btn_rules"></button>
-    <label class="gm-op"><span data-i18n="opacity"></span> <input type="range" id="gm-op" min="40" max="100" value="90"></label>
-    <button id="gm-shuf" data-i18n="btn_shuffle"></button>
-    <button id="gm-rst" data-i18n="btn_reset"></button>
-    <button id="gm-spin"></button>
+  <section class="panel gm-catalog">
+    <a class="gm-card" href="icsa/icsa.html">
+      <span class="gm-card-icon">⬠</span>
+      <span class="gm-card-name" id="tr-card_icsa_name"></span>
+      <span class="gm-card-desc" id="tr-card_icsa_desc"></span>
+    </a>
+    <a class="gm-card" href="smrs/smrs.html">
+      <span class="gm-card-icon">🚀</span>
+      <span class="gm-card-name" id="tr-card_smrs_name"></span>
+      <span class="gm-card-desc" id="tr-card_smrs_desc"></span>
+    </a>
+    <a class="gm-card" href="klds/klds.html">
+      <span class="gm-card-icon">❖</span>
+      <span class="gm-card-name" id="tr-card_klds_name"></span>
+      <span class="gm-card-desc" id="tr-card_klds_desc"></span>
+    </a>
+    <div class="gm-card gm-card-stub">
+      <span class="gm-card-icon">…</span>
+      <span class="gm-card-name" id="tr-card_more_name"></span>
+      <span class="gm-card-desc" id="tr-card_more_desc"></span>
+    </div>
   </section>
-
-  <div id="gm-st" class="gm-status"></div>
-
-  <main class="gm-main">
-    <aside id="gm-rules" class="panel"></aside>
-    <div id="gm-view"></div>
-  </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
@@ -57,7 +71,6 @@
   </footer>
 
   <script src="../js/boot.js"></script>
-  <script src="three.min.js"></script>
   <script src="game.js"></script>
 </body>
 </html>

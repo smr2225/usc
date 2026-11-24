@@ -1,0 +1,11 @@
+[
+  {"id": "title", "ru": "Звёздчатый икосаэдр", "en": "Stellated icosahedron", "es": "Icosaedro estrellado", "fr": "Icosaèdre étoilé"},
+  {"id": "doc_title", "ru": "ССГ 2222 — Звёздчатый икосаэдр", "en": "USC 2222 — Stellated icosahedron", "es": "USC 2222 — Icosaedro estrellado", "fr": "USC 2222 — Icosaèdre étoilé"},
+  {"id": "hint", "ru": "Пять тетраэдров, сплетённых в одну фигуру. Вращайте мышью (или пальцем), колесом — масштаб. Кнопкой «Разобрать» разведите тетраэдры в стороны.", "en": "Five tetrahedra woven into one figure. Drag with the mouse (or finger), scroll wheel to zoom. Use “Explode” to pull the tetrahedra apart.", "es": "Cinco tetraedros entretejidos en una figura. Gírelo con el ratón (o el dedo), rueda para acercar. Con «Descomponer» separe los tetraedros.", "fr": "Cinq tétraèdres entrelacés en une figure. Faites tourner à la souris (ou au doigt), molette pour zoomer. « Décomposer » écarte les tétraèdres."},
+  {"id": "back", "ru": "← ко всем играм", "en": "← all games", "es": "← todos los juegos", "fr": "← tous les jeux"},
+  {"id": "btn_rotate_off", "ru": "Остановить вращение", "en": "Stop rotation", "es": "Detener giro", "fr": "Arrêter la rotation"},
+  {"id": "btn_rotate_on", "ru": "Вращать", "en": "Rotate", "es": "Girar", "fr": "Faire tourner"},
+  {"id": "btn_explode", "ru": "Разобрать", "en": "Explode", "es": "Descomponer", "fr": "Décomposer"},
+  {"id": "btn_assemble", "ru": "Собрать", "en": "Assemble", "es": "Montar", "fr": "Rassembler"},
+  {"id": "no_webgl", "ru": "Ваш браузер не поддерживает WebGL.", "en": "Your browser does not support WebGL.", "es": "Tu navegador no admite WebGL.", "fr": "Votre navigateur ne prend pas en charge WebGL."}
+]

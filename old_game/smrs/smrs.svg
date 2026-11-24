@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Mars lander">
+  <defs>
+    <radialGradient id="smrs-mars" cx="38%" cy="34%" r="75%">
+      <stop offset="0%" stop-color="#e8965a"/>
+      <stop offset="50%" stop-color="#c1440e"/>
+      <stop offset="100%" stop-color="#5e1f0c"/>
+    </radialGradient>
+  </defs>
+  <!-- Mars -->
+  <circle cx="100" cy="128" r="64" fill="url(#smrs-mars)"/>
+  <circle cx="74" cy="116" r="10" fill="#7d2608" opacity=".5"/>
+  <circle cx="124" cy="146" r="14" fill="#7d2608" opacity=".45"/>
+  <circle cx="100" cy="158" r="7" fill="#7d2608" opacity=".5"/>
+  <circle cx="142" cy="112" r="6" fill="#7d2608" opacity=".4"/>
+  <!-- descent line -->
+  <line x1="100" y1="40" x2="100" y2="68" stroke="#fbf1de" stroke-width="1.6" opacity=".85"/>
+  <!-- lander capsule -->
+  <path d="M84 68 L116 68 L110 84 L90 84 Z" fill="#dad4ca" stroke="#5a4a3a" stroke-width="1.6"/>
+  <rect x="92" y="84" width="16" height="5" rx="1.5" fill="#9a8a78"/>
+  <!-- legs + pads -->
+  <line x1="92" y1="89" x2="80" y2="104" stroke="#9a8a78" stroke-width="2.4"/>
+  <line x1="108" y1="89" x2="120" y2="104" stroke="#9a8a78" stroke-width="2.4"/>
+  <circle cx="80" cy="104" r="3" fill="#1f78d1"/>
+  <circle cx="120" cy="104" r="3" fill="#1f78d1"/>
+  <!-- thruster glow -->
+  <path d="M96 89 L104 89 L101 98 L99 98 Z" fill="#ffd700" opacity=".8"/>
+</svg>

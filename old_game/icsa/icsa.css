@@ -1,0 +1,22 @@
+/* ===== USC 2222 · game/icsa/icsa.css ===== */
+.ic-main { max-width: var(--content-width); margin: 0 auto; padding: 0 1rem 1rem; }
+.back-link { display: inline-block; font-size: .85rem; color: var(--link); margin-bottom: .2rem; }
+.back-link:hover { color: var(--accent); }
+
+/* Сцена three.js: тёмный «космос», как у плитки-эмблемы в каталоге */
+.ic-stage {
+  position: relative; width: min(96vw, 70vh, 720px); aspect-ratio: 1 / 1;
+  margin: .4rem auto 0; background: #0a0a14; border-radius: 8px; overflow: hidden;
+  box-shadow: 0 2px 18px rgba(0,0,0,.25);
+}
+.ic-stage canvas { width: 100%; height: 100%; display: block; touch-action: none; }
+
+.ic-controls { display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap; margin: .8rem 0 .4rem; }
+.ic-controls button {
+  font: inherit; color: #fff3e3; background: var(--accent);
+  border: 1px solid rgba(0,0,0,.22); padding: 8px 16px; border-radius: 4px; cursor: pointer;
+}
+.ic-controls button:hover { filter: brightness(1.08); }
+.ic-controls button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+.ic-hint { color: var(--muted); font-size: 14px; max-width: 640px; line-height: 1.55; margin: 12px auto; text-align: center; }

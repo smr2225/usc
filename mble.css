@@ -1,34 +1,30 @@
-/* ===== USC 2222 · mble.css  (полная исправленная версия v3) =====
- *
- * ЧТО ИЗМЕНИЛОСЬ vs v2:
- *  8. По запросу пользователя: всё содержимое шапки прижато вправо.
- *     Бургер, lang, theme — все справа в порядке: бургер → lang → theme.
- *     Меню по-прежнему absolute-дропдаун справа под шапкой.
+/* ===== USC 2222 · mble.css  (v4) =====
+ * FIX v4: меню — плотный фон + backdrop-filter, не сливается с текстом.
+ *         Убрана лишняя } в конце файла.
  */
 
-/* FIX: overlay больше не нужен. */
 .menu-overlay { display: none !important; }
 
 @media (max-width: 768px) {
-  /* FIX v3: всё содержимое шапки прижато вправо */
   .header-inner {
     justify-content: flex-end;
     padding: 0 1rem;
-    position: relative;                /* якорь для absolute-меню */
+    position: relative;
     gap: .25rem .8rem;
   }
 
-  /* FIX v3: порядок — бургер, lang, theme (все справа) */
   #menu-toggle { display: block; order: 0; }
   .lang-switch { order: 1; }
   #usc-theme-toggle { order: 2; }
 
-  /* .site-menu вырвано из потока (absolute), не двигает lang/theme. */
+  /* FIX v4: плотный фон вместо прозрачного + размытие фона за меню */
   .site-menu {
     position: absolute;
     top: 100%;
     right: 0;
-    background: var(--panel);
+    background: var(--panel-footer);
+    backdrop-filter: blur(8px) saturate(1.2);
+    -webkit-backdrop-filter: blur(8px) saturate(1.2);
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: .4rem .5rem;
@@ -38,7 +34,7 @@
     min-width: 180px;
     max-width: 240px;
     z-index: 50;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.35);
     display: none;
   }
   .site-menu.open { display: flex; }
@@ -50,14 +46,13 @@
     width: 100%;
     border-radius: 3px;
   }
-  .menu-items > a:hover { background: rgba(255,255,255,.06); }
+  .menu-items > a:hover { background: rgba(255,255,255,.08); }
 
   .menu-group { width: 100%; }
   .parent-row { justify-content: space-between; padding: .15rem 0; }
   .parent-row a { font-size: .8rem; }
   .sub-toggle { font-size: .8rem; display: block; padding: 0 .25rem; }
 
-  /* подменю раскрывается inline под родителем */
   .submenu {
     position: static;
     border: none;

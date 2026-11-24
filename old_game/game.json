@@ -1,0 +1,33 @@
+{
+  "ui": {
+    "title":    {"ru": "Игры", "en": "Games", "es": "Juegos", "fr": "Jeux"},
+    "subtitle": {"ru": "Мини-игры проекта «Марс-2222». Выбирайте по названию и эмблеме — и играйте прямо в браузере.", "en": "Mini-games of the “Mars-2222” project. Pick one by name and emblem — and play right in the browser.", "es": "Mini-juegos del proyecto «Marte-2222». Elige por nombre y emblema — y juega directamente en el navegador.", "fr": "Mini-jeux du projet « Mars-2222 ». Choisissez par nom et emblème — et jouez directement dans le navigateur."},
+    "play":     {"ru": "Играть", "en": "Play", "es": "Jugar", "fr": "Jouer"},
+    "soon":     {"ru": "Скоро", "en": "Coming soon", "es": "Próximamente", "fr": "Bientôt"},
+    "back":     {"ru": "← ко всем играм", "en": "← all games", "es": "← todos los juegos", "fr": "← tous les jeux"},
+    "home":     {"ru": "На сайт", "en": "Home", "es": "Inicio", "fr": "Accueil"}
+  },
+  "games": [
+    {
+      "id": "icsa",
+      "href": "icsa/icsa.html",
+      "icon": "icsa",
+      "title": {"ru": "Звёздчатый икосаэдр", "en": "Stellated icosahedron", "es": "Icosaedro estrellado", "fr": "Icosaèdre étoilé"},
+      "desc":  {"ru": "Интерактивная 3D-модель звёздчатого икосаэдра — пяти тетраэдров, сплетённых в одну фигуру. Вращайте мышью, разберите на тетраэдры и соберите обратно.", "en": "Interactive 3D model of the stellated icosahedron — five tetrahedra woven into one figure. Rotate with the mouse, explode into tetrahedra and reassemble.", "es": "Modelo 3D interactivo del icosaedro estrellado — cinco tetraedros entretejidos en una figura. Gírelo con el ratón, descomponga en tetraedros y vuelva a montar.", "fr": "Modèle 3D interactif de l'icosaèdre étoilé — cinq tétraèdres entrelacés en une figure. Faites tourner à la souris, décomposez en tétraèdres et rassemblez."}
+    },
+    {
+      "id": "smrs",
+      "href": "smrs/smrs.html",
+      "icon": "smrs",
+      "title": {"ru": "Посадка на Марс", "en": "Mars Landing", "es": "Aterrizaje en Marte", "fr": "Atterrissage sur Mars"},
+      "desc":  {"ru": "Симулятор посадки корабля: гасите вертикальную скорость, укладывайте четыре опоры на площадку и берегите топливо. Пять уровней, запись полёта для повтора.", "en": "Ship landing simulator: kill vertical velocity, set the four legs on the pad and watch your fuel. Five levels, flight recording for replay.", "es": "Simulador de aterrizaje: frena la velocidad vertical, apoya las cuatro patas en la plataforma y cuida el combustible. Cinco niveles, grabación de vuelo para repetir.", "fr": "Simulateur d'atterrissage : freinez la vitesse verticale, posez les quatre pieds sur la plateforme et ménagez le carburant. Cinq niveaux, enregistrement de vol pour relecture."}
+    },
+    {
+      "id": "wait",
+      "href": null,
+      "icon": "wait",
+      "title": {"ru": "Ждите следующих", "en": "More coming", "es": "Próximamente más", "fr": "À venir"},
+      "desc":  {"ru": "Новые мини-игры проекта «Марс-2222» уже в работе.", "en": "New “Mars-2222” mini-games are on the way.", "es": "Nuevos mini-juegos de «Marte-2222» en camino.", "fr": "De nouveaux mini-jeux « Mars-2222 » arrivent."}
+    }
+  ]
+}
